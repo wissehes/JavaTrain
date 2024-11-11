@@ -1,4 +1,4 @@
-package nl.wissehes.javatrain.model.reisinformatie;
+package nl.wissehes.javatrain.model.NDOV;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
@@ -20,6 +20,24 @@ public class Trein {
 
     @JacksonXmlProperty(localName = "Vervoerder")
     public String vervoerder;
+
+    @JacksonXmlProperty(localName = "Reserveren")
+    public NSBoolean reserveren;
+
+    @JacksonXmlProperty(localName = "Toeslag")
+    public NSBoolean toeslag;
+
+    @JacksonXmlProperty(localName = "NietInstappen")
+    public NSBoolean nietInstappen;
+
+    @JacksonXmlProperty(localName = "AchterBlijvenAchtersteTreinDeel")
+    public NSBoolean achterBlijvenAchtersteTreinDeel;
+
+    @JacksonXmlProperty(localName = "RangeerBeweging")
+    public NSBoolean rangeerBeweging;
+
+    @JacksonXmlProperty(localName = "SpeciaalKaartje")
+    public NSBoolean speciaalKaartje;
 
     @JacksonXmlProperty(localName = "TreinStatus")
     public String treinStatus;

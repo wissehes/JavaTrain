@@ -1,4 +1,4 @@
-package nl.wissehes.javatrain.model.reisinformatie;
+package nl.wissehes.javatrain.model.NDOV;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
