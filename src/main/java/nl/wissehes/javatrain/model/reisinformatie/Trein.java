@@ -87,7 +87,7 @@ public class Trein {
         public InfoStatus InfoStatus;
     }
 
-    record TreinSoort(
+    public record TreinSoort(
             @JacksonXmlProperty(localName = "Code", isAttribute = true) String code,
             @JacksonXmlProperty(localName = "") String value
     ){}
