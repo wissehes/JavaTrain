@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 
+import java.util.Date;
 import java.util.List;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -45,6 +46,9 @@ public class Trein {
     @JacksonXmlProperty(localName = "TreinEindBestemming")
     @JacksonXmlElementWrapper(useWrapping = false)
     public List<Eindbestemming> eindBestemming;
+
+    @JacksonXmlProperty(localName = "PresentatieTreinEindBestemming")
+    public LocalizedUiting presentatieTreinEindBestemming;
 
     @JacksonXmlProperty(localName = "VertrekTijd")
     @JacksonXmlElementWrapper(useWrapping = false)
@@ -91,7 +95,7 @@ public class Trein {
 
     public record VertrekTijd(
             @JacksonXmlProperty(localName = "InfoStatus", isAttribute = true) InfoStatus infoStatus,
-            @JacksonXmlProperty(localName = "") String date
+            @JacksonXmlProperty(localName = "") Date date
     ){}
 
     public record TreinVertrekSpoor(
