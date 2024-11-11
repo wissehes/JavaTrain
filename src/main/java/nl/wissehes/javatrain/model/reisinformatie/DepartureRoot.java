@@ -8,6 +8,14 @@ import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class DepartureRoot {
 
+    /**
+     * Get unique ID of this departure item
+     */
+    public String getId() {
+        DynamischeVertrekStaat dvs = reisinformatieProduct.dynamischeVertrekStaat;
+        return dvs.ritStation.code + "-" + dvs.ritId + "-" + dvs.ritDatum;
+    }
+
     @JacksonXmlProperty(localName = "ReisInformatieProductDVS")
     public ReisInformatieProductDVS reisinformatieProduct;
 
