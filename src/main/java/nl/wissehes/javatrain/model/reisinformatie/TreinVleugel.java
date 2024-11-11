@@ -24,4 +24,8 @@ public class TreinVleugel {
     @JacksonXmlProperty(localName = "StopStations")
     @JacksonXmlElementWrapper(useWrapping = false)
     public Trein.Route stopStations;
+
+    @JacksonXmlProperty(localName = "MaterieelDeelDVS")
+    @JacksonXmlElementWrapper(useWrapping = false)
+    public List<MaterieelDeel> materieelDelen;
 }
