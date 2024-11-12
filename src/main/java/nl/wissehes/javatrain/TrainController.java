@@ -5,8 +5,10 @@ import nl.wissehes.javatrain.model.response.DeparturesResponse;
 import nl.wissehes.javatrain.model.shared.Station;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Comparator;
 import java.util.List;
 
 @RestController
@@ -20,8 +22,17 @@ public class TrainController {
     }
 
     @GetMapping(value = "/received/raw", produces = "application/xml")
-    public String getReceivedMessagesRaw() {
+    public String getReceivedMessagesRaw(@RequestParam(required = false) Integer index) {
+        if (index != null) {
+            return dataStore.getRawDepartures().get(index);
+        }
+
         return dataStore.getRawDepartures().getLast();
+    }
+
+    @GetMapping(value = "/received/raw/all", produces = "application/xml")
+    public List<String> getReceivedMessagesRawAll() {
+        return dataStore.getRawDepartures();
     }
 
     @GetMapping(value = "/departures/{station}", produces = "application/json")
@@ -35,6 +46,7 @@ public class TrainController {
         var departures = dataStore.getDepartures()
                 .stream()
                 .filter(d -> d.forStation.equals(stationData))
+                .sorted(Comparator.comparing(d -> d.departureTime))
                 .toList();
 
         return new DeparturesResponse(stationData, departures);
