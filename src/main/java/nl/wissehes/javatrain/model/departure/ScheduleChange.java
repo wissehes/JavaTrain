@@ -4,7 +4,8 @@ import nl.wissehes.javatrain.model.NDOV.Wijziging;
 import nl.wissehes.javatrain.model.shared.Station;
 
 public class ScheduleChange {
-    public ScheduleChangeType type;
+    public ChangeType type;
+    public int code;
     public String shortDescription;
     public String longDescription;
     public Station station;
@@ -13,13 +14,14 @@ public class ScheduleChange {
     }
 
     public ScheduleChange(Wijziging change) {
-        this.type = ScheduleChangeType.fromCode(change.wijzigingType);
+        this.type = ChangeType.fromCode(change.wijzigingType);
+        this.code = change.wijzigingType;
         this.shortDescription = change.wijzigingOorzaakKort;
         this.longDescription = change.wijzigingOorzaakLang;
         this.station = null;
     }
 
-    public enum ScheduleChangeType {
+    public enum ChangeType {
         DELAYED_DEPARTURE(10),
         DELAYED_ARRIVAL(11),
         CHANGED_DEPARTURE_TIME(12),
@@ -47,7 +49,7 @@ public class ScheduleChange {
 
         private final int code;
 
-        ScheduleChangeType(int code) {
+        ChangeType(int code) {
             this.code = code;
         }
 
@@ -55,8 +57,8 @@ public class ScheduleChange {
             return code;
         }
 
-        public static ScheduleChangeType fromCode(int code) {
-            for (ScheduleChangeType mod : values()) {
+        public static ChangeType fromCode(int code) {
+            for (ChangeType mod : values()) {
                 if (mod.code == code) {
                     return mod;
                 }
