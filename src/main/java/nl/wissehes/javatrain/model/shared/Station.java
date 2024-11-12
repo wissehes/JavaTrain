@@ -10,6 +10,21 @@ public class Station {
     public String mediumName;
     public String longName;
 
+    @Override
+    public boolean equals(Object obj) {
+
+        if(obj instanceof Station) {
+            return ((Station)obj).code.equals(this.code);
+        }
+
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        return code.hashCode();
+    }
+
     public Station(String code, int type, int uicCode, String shortName, String mediumName, String longName) {
         this.code = code;
         this.type = type;

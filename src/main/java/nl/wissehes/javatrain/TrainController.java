@@ -42,7 +42,10 @@ public class TrainController {
 
     @GetMapping(value = "/stations", produces = "application/json")
     public List<Station> getStations() {
-        return dataStore.getStations();
+        return dataStore.getStations()
+                .stream()
+                .sorted(Comparator.comparing(s -> s.longName))
+                .toList();
     }
 
 }
