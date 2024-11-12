@@ -14,8 +14,6 @@ import java.util.List;
 
 @Component
 public class DataReceiver {
-    public static List<DepartureRoot> receivedMessages = new ArrayList<>();
-    public static List<String> receivedMessagesRaw = new ArrayList<>();
 
     private final ZMQ.Socket subscriber;
 
@@ -34,10 +32,7 @@ public class DataReceiver {
                     System.out.println("Received message on topic: " + topic);
 
                     String message = GZipUtils.decompress(messageBytes);
-                    receivedMessagesRaw.add(message);
-
-                    DepartureRoot departureRoot = DepartureParser.parse(message);
-                    receivedMessages.add(departureRoot);
+                    DataStore.getInstance().addDeparture(message);
                 } catch (IOException e) {
                     System.err.println("Failed to decompress message: " + e.getMessage());
                 }
