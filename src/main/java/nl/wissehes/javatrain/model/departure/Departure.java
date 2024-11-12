@@ -13,7 +13,6 @@ public class Departure {
     public String journeyDate;
     public String serviceName;
     public String lineName;
-    public Boolean isCancelled;
 
     public Station forStation;
 
@@ -43,6 +42,12 @@ public class Departure {
     public String departureDirection;
 
     public List<ScheduleChange> scheduleChanges;
+
+    public Boolean getIsCancelled() {
+        return this.scheduleChanges
+                .stream()
+                .anyMatch(s -> s.type.equals(ScheduleChange.ChangeType.CANCELLED_DEPARTURE));
+    }
 
     public Departure() {
     }

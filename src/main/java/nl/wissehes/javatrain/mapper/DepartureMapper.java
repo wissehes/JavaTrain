@@ -36,7 +36,6 @@ public class DepartureMapper {
         departure.lineName = trein.lijnNummer;
         departure.forStation = new Station(dvs.ritStation);
         departure.serviceNumber = trein.treinNummer;
-        departure.isCancelled = null; // TODO: Add cancelled state
 
         departure.serviceType = trein.treinSoort.value();
         departure.serviceTypeCode = trein.treinSoort.code();
