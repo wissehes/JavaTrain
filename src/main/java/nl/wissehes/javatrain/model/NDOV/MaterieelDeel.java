@@ -32,4 +32,8 @@ public class MaterieelDeel {
 
     @JacksonXmlProperty(localName = "PresentatieMaterieelDeelEindBestemming")
     public LocalizedUiting presentatieEindBestemming;
+
+    @JacksonXmlProperty(localName = "Wijziging")
+    @JacksonXmlElementWrapper(useWrapping = false)
+    public List<Wijziging> wijzigingen;
 }

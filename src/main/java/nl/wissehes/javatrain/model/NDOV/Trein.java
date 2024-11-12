@@ -87,6 +87,10 @@ public class Trein {
     @JacksonXmlElementWrapper(useWrapping = false)
     public List<TreinVleugel> treinVleugel;
 
+    @JacksonXmlProperty(localName = "Wijziging")
+    @JacksonXmlElementWrapper(useWrapping = false)
+    public List<Wijziging> wijzigingen = List.of();
+
     public static class Route {
         @JacksonXmlProperty(localName = "InfoStatus", isAttribute = true)
         public InfoStatus infoStatus;
@@ -116,4 +120,5 @@ public class Trein {
             @JacksonXmlProperty(localName = "Code", isAttribute = true) String code,
             @JacksonXmlProperty(localName = "") String value
     ){}
+
 }
