@@ -1,6 +1,5 @@
 package nl.wissehes.javatrain;
 
-import nl.wissehes.javatrain.mapper.DepartureMapper;
 import nl.wissehes.javatrain.model.departure.Departure;
 import nl.wissehes.javatrain.model.response.DeparturesResponse;
 import nl.wissehes.javatrain.model.shared.Station;
