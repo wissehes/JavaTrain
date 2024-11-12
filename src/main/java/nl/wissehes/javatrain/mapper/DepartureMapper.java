@@ -5,8 +5,10 @@ import nl.wissehes.javatrain.model.NDOV.DynamischeVertrekStaat;
 import nl.wissehes.javatrain.model.NDOV.InfoStatus;
 import nl.wissehes.javatrain.model.NDOV.Trein;
 import nl.wissehes.javatrain.model.departure.Departure;
+import nl.wissehes.javatrain.model.departure.ScheduleChange;
 import nl.wissehes.javatrain.model.shared.Station;
 
+import java.time.Duration;
 import java.util.Date;
 import java.util.List;
 
@@ -57,6 +59,8 @@ public class DepartureMapper {
         departure.actualPlatform = this.getPlatform(InfoStatus.ACTUEEL);
 
         departure.departureDirection = trein.vertrekRichting;
+
+        departure.scheduleChanges = trein.wijzigingen.stream().map(ScheduleChange::new).toList();
 
         return departure;
     }

@@ -42,6 +42,8 @@ public class Departure {
     public String actualPlatform;
     public String departureDirection;
 
+    public List<ScheduleChange> scheduleChanges;
+
     public Departure() {
     }
 
