@@ -66,8 +66,6 @@ public class DepartureMapper {
 
     /**
      * Get the departure time for a specific status
-     * @param status
-     * @return
      */
     private Date getDepartureTime(InfoStatus status) {
         List<Trein.VertrekTijd> vertrekTijden = getTrein().vertrekTijd;
@@ -79,6 +77,9 @@ public class DepartureMapper {
             .orElse(null);
     }
 
+    /**
+     * Get the destinations for a specific status
+     */
     private List<Station> getDestinations(InfoStatus status) {
         return getTrein().eindBestemming
                 .stream()
@@ -87,6 +88,11 @@ public class DepartureMapper {
                 .toList();
     }
 
+    /**
+     * Get the stations in between for a specific status
+     * @param status
+     * @return
+     */
     private List<Station> getViaStations(InfoStatus status) {
         if(getTrein().verkorteRoute == null) {
             // return emptyu list
@@ -107,6 +113,9 @@ public class DepartureMapper {
         return route.stations.stream().map(Station::new).toList();
     }
 
+    /**
+     * Get the platform for a specific status
+     */
     private String getPlatform(InfoStatus status) {
         if(getTrein().treinVertrekSpoor == null) {
             return null;
