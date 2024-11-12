@@ -91,6 +91,14 @@ public class Trein {
     @JacksonXmlElementWrapper(useWrapping = false)
     public List<Wijziging> wijzigingen = List.of();
 
+    @JacksonXmlProperty(localName = "InstapTip")
+    @JacksonXmlElementWrapper(useWrapping = false)
+    public List<InstapTip> instapTips = List.of();
+
+    @JacksonXmlProperty(localName = "ReisTip")
+    @JacksonXmlElementWrapper(useWrapping = false)
+    public List<ReisTip> reisTips = List.of();
+
     public static class Route {
         @JacksonXmlProperty(localName = "InfoStatus", isAttribute = true)
         public InfoStatus infoStatus;
