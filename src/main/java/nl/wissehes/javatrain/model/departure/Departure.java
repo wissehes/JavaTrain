@@ -32,8 +32,11 @@ public class Departure {
 
     public Date departureTime;
     public Date actualDepartureTime;
+
     /** Delay in seconds */
-    public int delay;
+    public long exactDelay;
+    /** Delay normalized to minutes rounded to the closest 5 */
+    public long delayNormalized;
 
     public String plannedPlatform;
     public String actualPlatform;

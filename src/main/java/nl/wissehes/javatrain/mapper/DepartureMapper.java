@@ -50,7 +50,8 @@ public class DepartureMapper {
 
         departure.departureTime = this.getDepartureTime(InfoStatus.GEPLAND);
         departure.actualDepartureTime = this.getDepartureTime(InfoStatus.ACTUEEL);
-        departure.delay = 0;
+        departure.exactDelay = Duration.parse(trein.exacteVertrekVertraging).getSeconds();
+        departure.delayNormalized = Duration.parse(trein.gedempteVertrekVertraging).toMinutes();
 
         departure.plannedPlatform = this.getPlatform(InfoStatus.GEPLAND);
         departure.actualPlatform = this.getPlatform(InfoStatus.ACTUEEL);
