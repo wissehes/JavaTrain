@@ -31,7 +31,7 @@ public class DepartureMapper {
         departure.journeyId = dvs.ritId;
         departure.journeyDate = dvs.ritDatum;
         departure.serviceName = null;
-        departure.lineName = null;
+        departure.lineName = trein.lijnNummer;
         departure.forStation = new Station(dvs.ritStation);
         departure.serviceNumber = trein.treinNummer;
 

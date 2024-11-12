@@ -13,6 +13,9 @@ public class Trein {
     @JacksonXmlProperty(localName = "TreinNummer")
     public String treinNummer;
 
+    @JacksonXmlProperty(localName = "LijnNummer")
+    public String lijnNummer;
+
     @JacksonXmlProperty(localName = "TreinSoort")
     public TreinSoort treinSoort;
 
