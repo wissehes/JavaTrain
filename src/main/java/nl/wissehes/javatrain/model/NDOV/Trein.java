@@ -90,7 +90,7 @@ public class Trein {
 
         @JacksonXmlProperty(localName = "Station")
         @JacksonXmlElementWrapper(useWrapping = false)
-        public List<Station> station;
+        public List<Station> stations;
     }
 
     public record VertrekTijd(
