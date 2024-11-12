@@ -1,5 +1,7 @@
 package nl.wissehes.javatrain.model.departure;
 
+import nl.wissehes.javatrain.mapper.DepartureMapper;
+import nl.wissehes.javatrain.model.NDOV.DepartureRoot;
 import nl.wissehes.javatrain.model.shared.Station;
 
 import java.util.Date;
@@ -11,12 +13,16 @@ public class Departure {
     public String journeyDate;
     public String serviceName;
     public String lineName;
+    public Boolean isCancelled;
 
     public Station forStation;
 
     public List<Station> plannedDestination;
     public List<Station> actualDestination;
     public String destinationDisplay;
+
+    public List<Station> plannedViaStations;
+    public List<Station> actualViaStations;
 
     public String serviceNumber;
     public String serviceType;
@@ -29,8 +35,15 @@ public class Departure {
     /** Delay in seconds */
     public int delay;
 
-    public String platform;
+    public String plannedPlatform;
     public String actualPlatform;
     public String departureDirection;
+
+    public Departure() {
+    }
+
+    public static Departure fromXML(DepartureRoot rawData) {
+        return new DepartureMapper(rawData).mapDeparture();
+    }
 
 }

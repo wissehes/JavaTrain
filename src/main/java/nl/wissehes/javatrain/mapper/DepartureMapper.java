@@ -30,10 +30,11 @@ public class DepartureMapper {
 
         departure.journeyId = dvs.ritId;
         departure.journeyDate = dvs.ritDatum;
-        departure.serviceName = null;
+        departure.serviceName = null; // TODO: Add service name?
         departure.lineName = trein.lijnNummer;
         departure.forStation = new Station(dvs.ritStation);
         departure.serviceNumber = trein.treinNummer;
+        departure.isCancelled = null; // TODO: Add cancelled state
 
         departure.serviceType = trein.treinSoort.value();
         departure.serviceTypeCode = trein.treinSoort.code();
@@ -42,13 +43,16 @@ public class DepartureMapper {
         departure.actualDestination = getDestinations(InfoStatus.ACTUEEL);
         departure.destinationDisplay = trein.presentatieTreinEindBestemming.uitingen.getFirst().text();
 
+        departure.plannedViaStations = getViaStations(InfoStatus.GEPLAND);
+        departure.actualViaStations = getViaStations(InfoStatus.ACTUEEL);
+
         departure.operator = trein.vervoerder;
 
         departure.departureTime = this.getDepartureTime(InfoStatus.GEPLAND);
         departure.actualDepartureTime = this.getDepartureTime(InfoStatus.ACTUEEL);
         departure.delay = 0;
 
-        departure.platform = this.getPlatform(InfoStatus.GEPLAND);
+        departure.plannedPlatform = this.getPlatform(InfoStatus.GEPLAND);
         departure.actualPlatform = this.getPlatform(InfoStatus.ACTUEEL);
 
         departure.departureDirection = trein.vertrekRichting;
@@ -79,7 +83,31 @@ public class DepartureMapper {
                 .toList();
     }
 
+    private List<Station> getViaStations(InfoStatus status) {
+        if(getTrein().verkorteRoute == null) {
+            // return emptyu list
+            return List.of();
+        }
+
+        Trein.Route route = getTrein().verkorteRoute
+                .stream()
+                .filter(routeItem -> routeItem.infoStatus == status)
+                .findFirst()
+                .orElse(null);
+
+        if(route == null) {
+            // return empty list
+            return List.of();
+        }
+
+        return route.stations.stream().map(Station::new).toList();
+    }
+
     private String getPlatform(InfoStatus status) {
+        if(getTrein().treinVertrekSpoor == null) {
+            return null;
+        }
+
         Trein.TreinVertrekSpoor spoor = getTrein().treinVertrekSpoor.stream()
             .filter(vertrekSpoor -> vertrekSpoor.infoStatus() == status)
             .findFirst()
