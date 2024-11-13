@@ -1,7 +1,7 @@
 package nl.wissehes.javatrain.model.departure;
 
 import nl.wissehes.javatrain.mapper.DepartureMapper;
-import nl.wissehes.javatrain.model.NDOV.DepartureRoot;
+import nl.wissehes.javatrain.model.NDOV.DepartureDocument;
 import nl.wissehes.javatrain.model.shared.Station;
 
 import java.util.Date;
@@ -81,7 +81,7 @@ public class Departure {
     public Departure() {
     }
 
-    public static Departure fromXML(DepartureRoot rawData) {
+    public static Departure fromXML(DepartureDocument rawData) {
         return new DepartureMapper(rawData).mapDeparture();
     }
 

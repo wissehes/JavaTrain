@@ -6,7 +6,7 @@ import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 
 @JacksonXmlRootElement
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class DepartureRoot {
+public class DepartureDocument {
 
     @JacksonXmlProperty(localName = "ReisInformatieProductDVS")
     public ReisInformatieProductDVS reisinformatieProduct;

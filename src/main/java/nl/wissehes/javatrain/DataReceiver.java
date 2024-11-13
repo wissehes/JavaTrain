@@ -2,15 +2,11 @@ package nl.wissehes.javatrain;
 
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
-import nl.wissehes.javatrain.model.NDOV.DepartureRoot;
-import nl.wissehes.javatrain.parser.DepartureParser;
 import nl.wissehes.javatrain.util.GZipUtils;
 import org.springframework.stereotype.Component;
 import org.zeromq.ZMQ;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 @Component
 public class DataReceiver {

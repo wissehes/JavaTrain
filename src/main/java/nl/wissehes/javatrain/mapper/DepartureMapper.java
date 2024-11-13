@@ -1,6 +1,6 @@
 package nl.wissehes.javatrain.mapper;
 
-import nl.wissehes.javatrain.model.NDOV.DepartureRoot;
+import nl.wissehes.javatrain.model.NDOV.DepartureDocument;
 import nl.wissehes.javatrain.model.NDOV.DynamischeVertrekStaat;
 import nl.wissehes.javatrain.model.NDOV.InfoStatus;
 import nl.wissehes.javatrain.model.NDOV.Trein;
@@ -15,9 +15,9 @@ import java.util.List;
 
 public class DepartureMapper {
 
-    DepartureRoot data;
+    DepartureDocument data;
 
-    public DepartureMapper(DepartureRoot data) {
+    public DepartureMapper(DepartureDocument data) {
         this.data = data;
     }
 

@@ -1,7 +1,5 @@
 package nl.wissehes.javatrain.model.shared;
 
-import nl.wissehes.javatrain.model.departure.ScheduleChange;
-
 public class Station {
 
     public String code;

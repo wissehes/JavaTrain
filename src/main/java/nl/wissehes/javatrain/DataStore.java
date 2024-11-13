@@ -1,7 +1,7 @@
 package nl.wissehes.javatrain;
 
 import nl.wissehes.javatrain.mapper.DepartureMapper;
-import nl.wissehes.javatrain.model.NDOV.DepartureRoot;
+import nl.wissehes.javatrain.model.NDOV.DepartureDocument;
 import nl.wissehes.javatrain.model.departure.Departure;
 import nl.wissehes.javatrain.model.departure.TrainStatus;
 import nl.wissehes.javatrain.model.shared.Station;
@@ -34,7 +34,7 @@ public final class DataStore {
     public void addDeparture(String message) {
         rawDepartures.add(message);
 
-        DepartureRoot departureRoot = DepartureParser.parse(message);
+        DepartureDocument departureRoot = DepartureParser.parse(message);
         Departure mapped = new DepartureMapper(departureRoot).mapDeparture();
 
         // Remove any existing items with the same ID
