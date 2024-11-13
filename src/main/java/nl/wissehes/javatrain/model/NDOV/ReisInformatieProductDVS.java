@@ -2,6 +2,7 @@ package nl.wissehes.javatrain.model.NDOV;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
+import nl.wissehes.javatrain.model.NDOV.DVS.DynamischeVertrekStaat;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ReisInformatieProductDVS {

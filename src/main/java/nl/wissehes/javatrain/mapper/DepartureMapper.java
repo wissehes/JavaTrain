@@ -1,7 +1,7 @@
 package nl.wissehes.javatrain.mapper;
 
-import nl.wissehes.javatrain.model.NDOV.DepartureDocument;
-import nl.wissehes.javatrain.model.NDOV.DynamischeVertrekStaat;
+import nl.wissehes.javatrain.model.NDOV.DVS.DepartureDocument;
+import nl.wissehes.javatrain.model.NDOV.DVS.DynamischeVertrekStaat;
 import nl.wissehes.javatrain.model.NDOV.InfoStatus;
 import nl.wissehes.javatrain.model.NDOV.Trein;
 import nl.wissehes.javatrain.model.departure.Departure;

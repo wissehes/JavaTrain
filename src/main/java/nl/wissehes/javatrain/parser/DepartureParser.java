@@ -1,7 +1,7 @@
 package nl.wissehes.javatrain.parser;
 
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
-import nl.wissehes.javatrain.model.NDOV.DepartureDocument;
+import nl.wissehes.javatrain.model.NDOV.DVS.DepartureDocument;
 
 public class DepartureParser {
     private static final XmlMapper mapper = new XmlMapper();
