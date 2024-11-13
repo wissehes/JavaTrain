@@ -3,6 +3,7 @@ package nl.wissehes.javatrain;
 import nl.wissehes.javatrain.mapper.DepartureMapper;
 import nl.wissehes.javatrain.model.NDOV.DepartureRoot;
 import nl.wissehes.javatrain.model.departure.Departure;
+import nl.wissehes.javatrain.model.departure.TrainStatus;
 import nl.wissehes.javatrain.model.shared.Station;
 import nl.wissehes.javatrain.parser.DepartureParser;
 
@@ -37,7 +38,10 @@ public final class DataStore {
         Departure mapped = new DepartureMapper(departureRoot).mapDeparture();
 
         // Remove any existing items with the same ID
-        departures.remove(mapped);
+        departures.removeIf(d ->
+                d.getId().equals(mapped.getId()) ||
+                        d.trainStatus.equals(TrainStatus.DEPARTED)
+        );
 
         // Add the departure
         departures.add(mapped);

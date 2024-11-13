@@ -46,7 +46,7 @@ public class TrainController {
 
         var departures = dataStore.getDepartures()
                 .stream()
-                .filter(d -> d.forStation.equals(stationData) && !d.trainStatus.equals(TrainStatus.DEPARTED))
+                .filter(d -> d.forStation.equals(stationData))
                 .sorted(Comparator.comparing(d -> d.departureTime))
                 .toList();
 
