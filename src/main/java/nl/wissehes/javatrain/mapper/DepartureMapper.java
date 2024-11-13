@@ -61,6 +61,12 @@ public class DepartureMapper {
 
         departure.scheduleChanges = trein.wijzigingen.stream().map(ScheduleChange::new).toList();
 
+        departure.reservationRequired = trein.reserveren.toBoolean();
+        departure.supplementRequired = trein.toeslag.toBoolean();
+        departure.specialTicketRequired = trein.speciaalKaartje.toBoolean();
+        departure.rearTrainSetRemains = trein.achterBlijvenAchtersteTreinDeel.toBoolean();
+        departure.doNotBoard = trein.nietInstappen.toBoolean();
+
         return departure;
     }
 

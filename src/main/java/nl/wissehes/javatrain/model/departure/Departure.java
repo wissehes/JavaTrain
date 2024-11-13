@@ -2,7 +2,6 @@ package nl.wissehes.javatrain.model.departure;
 
 import nl.wissehes.javatrain.mapper.DepartureMapper;
 import nl.wissehes.javatrain.model.NDOV.DepartureRoot;
-import nl.wissehes.javatrain.model.NDOV.DynamischeVertrekStaat;
 import nl.wissehes.javatrain.model.shared.Station;
 
 import java.util.Date;
@@ -41,6 +40,12 @@ public class Departure {
     public String plannedPlatform;
     public String actualPlatform;
     public String departureDirection;
+
+    public Boolean reservationRequired;
+    public Boolean supplementRequired;
+    public Boolean specialTicketRequired;
+    public Boolean rearTrainSetRemains;
+    public Boolean doNotBoard;
 
     public List<ScheduleChange> scheduleChanges;
 
