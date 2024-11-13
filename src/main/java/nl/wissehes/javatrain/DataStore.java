@@ -35,6 +35,11 @@ public final class DataStore {
 
         DepartureRoot departureRoot = DepartureParser.parse(message);
         Departure mapped = new DepartureMapper(departureRoot).mapDeparture();
+
+        // Remove any existing items with the same ID
+        departures.remove(mapped);
+
+        // Add the departure
         departures.add(mapped);
     }
 
