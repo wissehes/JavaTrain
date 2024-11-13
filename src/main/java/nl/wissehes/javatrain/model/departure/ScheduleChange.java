@@ -6,8 +6,8 @@ import nl.wissehes.javatrain.model.shared.Station;
 public class ScheduleChange {
     public ChangeType type;
     public int code;
-    public String shortDescription;
-    public String longDescription;
+    public String causeShort;
+    public String causeLong;
     public Station station;
 
     public ScheduleChange() {
@@ -16,8 +16,8 @@ public class ScheduleChange {
     public ScheduleChange(Wijziging change) {
         this.type = ChangeType.fromCode(change.wijzigingType);
         this.code = change.wijzigingType;
-        this.shortDescription = change.wijzigingOorzaakKort;
-        this.longDescription = change.wijzigingOorzaakLang;
+        this.causeShort = change.wijzigingOorzaakKort;
+        this.causeLong = change.wijzigingOorzaakLang;
         this.station = null;
     }
 
