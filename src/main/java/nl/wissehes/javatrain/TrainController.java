@@ -1,6 +1,7 @@
 package nl.wissehes.javatrain;
 
 import nl.wissehes.javatrain.model.departure.Departure;
+import nl.wissehes.javatrain.model.departure.TrainStatus;
 import nl.wissehes.javatrain.model.response.DeparturesResponse;
 import nl.wissehes.javatrain.model.shared.Station;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -45,7 +46,7 @@ public class TrainController {
 
         var departures = dataStore.getDepartures()
                 .stream()
-                .filter(d -> d.forStation.equals(stationData))
+                .filter(d -> d.forStation.equals(stationData) && !d.trainStatus.equals(TrainStatus.DEPARTED))
                 .sorted(Comparator.comparing(d -> d.departureTime))
                 .toList();
 

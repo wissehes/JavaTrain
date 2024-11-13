@@ -47,6 +47,8 @@ public class Departure {
     public Boolean rearTrainSetRemains;
     public Boolean doNotBoard;
 
+    public TrainStatus trainStatus;
+
     public List<ScheduleChange> scheduleChanges;
 
     public Boolean getIsCancelled() {

@@ -6,6 +6,7 @@ import nl.wissehes.javatrain.model.NDOV.InfoStatus;
 import nl.wissehes.javatrain.model.NDOV.Trein;
 import nl.wissehes.javatrain.model.departure.Departure;
 import nl.wissehes.javatrain.model.departure.ScheduleChange;
+import nl.wissehes.javatrain.model.departure.TrainStatus;
 import nl.wissehes.javatrain.model.shared.Station;
 
 import java.time.Duration;
@@ -66,6 +67,8 @@ public class DepartureMapper {
         departure.specialTicketRequired = trein.speciaalKaartje.toBoolean();
         departure.rearTrainSetRemains = trein.achterBlijvenAchtersteTreinDeel.toBoolean();
         departure.doNotBoard = trein.nietInstappen.toBoolean();
+
+        departure.trainStatus = TrainStatus.fromCode(trein.treinStatus);
 
         return departure;
     }

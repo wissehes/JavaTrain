@@ -44,7 +44,7 @@ public class Trein {
     public NSBoolean speciaalKaartje;
 
     @JacksonXmlProperty(localName = "TreinStatus")
-    public String treinStatus;
+    public Integer treinStatus;
 
     @JacksonXmlProperty(localName = "TreinEindBestemming")
     @JacksonXmlElementWrapper(useWrapping = false)
