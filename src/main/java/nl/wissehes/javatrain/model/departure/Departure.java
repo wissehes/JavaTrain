@@ -2,6 +2,7 @@ package nl.wissehes.javatrain.model.departure;
 
 import nl.wissehes.javatrain.mapper.DepartureMapper;
 import nl.wissehes.javatrain.model.NDOV.DepartureRoot;
+import nl.wissehes.javatrain.model.NDOV.DynamischeVertrekStaat;
 import nl.wissehes.javatrain.model.shared.Station;
 
 import java.util.Date;
@@ -47,6 +48,27 @@ public class Departure {
         return this.scheduleChanges
                 .stream()
                 .anyMatch(s -> s.type.equals(ScheduleChange.ChangeType.CANCELLED_DEPARTURE));
+    }
+
+    /**
+     * Get unique ID of this departure item
+     */
+    public String getId() {
+        return this.forStation.code + "-" + this.journeyId + "-" + this.journeyDate;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if(obj instanceof Departure) {
+            return ((Departure) obj).getId().equals(this.getId());
+        }
+
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        return this.getId().hashCode();
     }
 
     public Departure() {
