@@ -7,8 +7,7 @@ import nl.wissehes.javatrain.model.departure.TrainStatus;
 import nl.wissehes.javatrain.model.shared.Station;
 import nl.wissehes.javatrain.parser.DepartureParser;
 
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 public final class DataStore {
 
@@ -16,6 +15,8 @@ public final class DataStore {
 
     private final List<Departure> departures = new LinkedList<>();
     private final List<String> rawDepartures = new LinkedList<>();
+
+    private final Map<String, Station> stations = new HashMap<String, Station>();
 
     private DataStore() {
     }
@@ -36,12 +37,18 @@ public final class DataStore {
 
         DepartureDocument departureRoot = DepartureParser.parse(message);
         Departure mapped = new DepartureMapper(departureRoot).mapDeparture();
+        Station station = mapped.forStation;
 
         // Remove any existing items with the same ID
         departures.removeIf(d ->
                 d.getId().equals(mapped.getId()) ||
                         d.trainStatus.equals(TrainStatus.DEPARTED)
         );
+
+        // Add the station
+        if(!stations.containsKey(station.code)) {
+            stations.put(station.code, station);
+        }
 
         // Add the departure
         departures.add(mapped);
@@ -65,9 +72,12 @@ public final class DataStore {
      * Get all found stations
      */
     public List<Station> getStations() {
-        return departures.stream()
-                .map(d -> d.forStation)
-                .distinct()
-                .toList();
+        return stations.values().stream().toList();
+    }
+
+    public Optional<Station> getStation(String code) {
+        return Optional.ofNullable(
+                stations.get(code.toUpperCase())
+        );
     }
 }
