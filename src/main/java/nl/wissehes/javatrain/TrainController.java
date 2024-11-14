@@ -1,11 +1,8 @@
 package nl.wissehes.javatrain;
 
 import nl.wissehes.javatrain.model.departure.Departure;
-import nl.wissehes.javatrain.model.departure.TrainStatus;
-import nl.wissehes.javatrain.model.response.DeparturesResponse;
 import nl.wissehes.javatrain.model.shared.Station;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -34,23 +31,6 @@ public class TrainController {
     @GetMapping(value = "/received/raw/all", produces = "application/xml")
     public List<String> getReceivedMessagesRawAll() {
         return dataStore.getRawDepartures();
-    }
-
-    @GetMapping(value = "/departures/{station}", produces = "application/json")
-    public DeparturesResponse getDepartures(@PathVariable String station) {
-        var stationData = dataStore.getStations()
-                .stream()
-                .filter(s -> s.code.equalsIgnoreCase(station))
-                .findFirst()
-                .orElse(null);
-
-        var departures = dataStore.getDepartures()
-                .stream()
-                .filter(d -> d.forStation.equals(stationData))
-                .sorted(Comparator.comparing(d -> d.departureTime))
-                .toList();
-
-        return new DeparturesResponse(stationData, departures);
     }
 
     @GetMapping(value = "/stations", produces = "application/json")
