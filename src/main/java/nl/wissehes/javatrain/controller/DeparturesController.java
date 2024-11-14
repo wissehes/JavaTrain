@@ -1,5 +1,6 @@
 package nl.wissehes.javatrain.controller;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import nl.wissehes.javatrain.DataStore;
 import nl.wissehes.javatrain.model.response.DeparturesResponse;
 import org.springframework.http.HttpStatus;
@@ -10,6 +11,7 @@ import java.util.Comparator;
 
 @RestController
 @RequestMapping("/departures")
+@Tag(name = "Departures")
 public class DeparturesController {
 
     private final DataStore dataStore;

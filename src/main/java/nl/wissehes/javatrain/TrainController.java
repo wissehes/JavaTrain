@@ -1,5 +1,6 @@
 package nl.wissehes.javatrain;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import nl.wissehes.javatrain.model.departure.Departure;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -8,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
+@Tag(name = "Trains controller", description = "Used mainly for debugging purposes")
 public class TrainController {
 
     private final DataStore dataStore;

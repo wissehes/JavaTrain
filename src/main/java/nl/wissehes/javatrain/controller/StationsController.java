@@ -1,5 +1,6 @@
 package nl.wissehes.javatrain.controller;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import nl.wissehes.javatrain.DataStore;
 import nl.wissehes.javatrain.model.shared.Station;
 import org.springframework.http.HttpStatus;
@@ -14,6 +15,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/stations")
+@Tag(name = "Stations")
 public class StationsController {
 
     private final DataStore dataStore;
@@ -22,7 +24,7 @@ public class StationsController {
         this.dataStore = dataStore;
     }
 
-    @GetMapping(value = { "", "/" })
+    @GetMapping()
     public List<Station> getStations() {
         return dataStore.getStations()
                 .stream()
