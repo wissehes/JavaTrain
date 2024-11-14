@@ -7,15 +7,15 @@ import nl.wissehes.javatrain.model.departure.TrainStatus;
 import nl.wissehes.javatrain.model.shared.Station;
 import nl.wissehes.javatrain.parser.DepartureParser;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 public final class DataStore {
 
     private static DataStore instance;
 
-    private final List<Departure> departures = new ArrayList<>();
-    private final List<String> rawDepartures = new ArrayList<>();
+    private final List<Departure> departures = new LinkedList<>();
+    private final List<String> rawDepartures = new LinkedList<>();
 
     private DataStore() {
     }
