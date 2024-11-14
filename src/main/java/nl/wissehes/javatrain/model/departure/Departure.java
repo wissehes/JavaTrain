@@ -41,12 +41,7 @@ public class Departure {
     public String actualPlatform;
     public String departureDirection;
 
-    public Boolean reservationRequired;
-    public Boolean supplementRequired;
-    public Boolean specialTicketRequired;
-    public Boolean rearTrainSetRemains;
-    public Boolean doNotBoard;
-
+    public SpecialFlags specialFlags;
     public TrainStatus trainStatus;
 
     public List<ScheduleChange> scheduleChanges;
