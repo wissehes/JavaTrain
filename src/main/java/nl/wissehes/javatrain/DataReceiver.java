@@ -14,10 +14,13 @@ import java.io.IOException;
 public class DataReceiver {
 
     private final ZMQ.Socket subscriber;
+    private final DataStore dataStore;
+
     Logger logger = LoggerFactory.getLogger(DataReceiver.class);
 
-    public DataReceiver(ZMQ.Socket subscriber) {
+    public DataReceiver(ZMQ.Socket subscriber, DataStore dataStore) {
         this.subscriber = subscriber;
+        this.dataStore = dataStore;
     }
 
     @PostConstruct
@@ -31,7 +34,7 @@ public class DataReceiver {
                     logger.debug("Received message on topic: {}", topic);
 
                     String message = GZipUtils.decompress(messageBytes);
-                    DataStore.getInstance().addDeparture(message);
+                    dataStore.addDeparture(message);
                 } catch (IOException e) {
                     logger.error("Failed to decompress message: {}", e.getMessage());
                 }

@@ -6,26 +6,19 @@ import nl.wissehes.javatrain.model.departure.Departure;
 import nl.wissehes.javatrain.model.departure.TrainStatus;
 import nl.wissehes.javatrain.model.shared.Station;
 import nl.wissehes.javatrain.parser.DepartureParser;
+import org.springframework.stereotype.Component;
 
 import java.util.*;
 
+@Component
 public final class DataStore {
-
-    private static DataStore instance;
 
     private final List<Departure> departures = new LinkedList<>();
     private final List<String> rawDepartures = new LinkedList<>();
 
-    private final Map<String, Station> stations = new HashMap<String, Station>();
+    private final Map<String, Station> stations = new HashMap<>();
 
     private DataStore() {
-    }
-
-    public static DataStore getInstance() {
-        if (instance == null) {
-            instance = new DataStore();
-        }
-        return instance;
     }
 
     /**

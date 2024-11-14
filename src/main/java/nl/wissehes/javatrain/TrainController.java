@@ -12,7 +12,11 @@ import java.util.List;
 @RestController
 public class TrainController {
 
-    private final DataStore dataStore = DataStore.getInstance();
+    private final DataStore dataStore;
+
+    public TrainController(DataStore dataStore) {
+        this.dataStore = dataStore;
+    }
 
     @GetMapping(value = "/received", produces = "application/json")
     public Departure getReceivedMessages() {

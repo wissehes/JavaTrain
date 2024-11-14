@@ -10,7 +10,11 @@ import java.util.Comparator;
 @RequestMapping("/departures")
 public class DeparturesController {
 
-    private final DataStore dataStore = DataStore.getInstance();
+    private final DataStore dataStore;
+
+    public DeparturesController(DataStore dataStore) {
+        this.dataStore = dataStore;
+    }
 
     @GetMapping(value = "/{station}", produces = "application/json")
     public DeparturesResponse getDepartures(@PathVariable String station) {
