@@ -2,10 +2,12 @@ package nl.wissehes.javatrain;
 
 import nl.wissehes.javatrain.mapper.DepartureMapper;
 import nl.wissehes.javatrain.model.NDOV.DVS.DepartureDocument;
+import nl.wissehes.javatrain.model.NDOV.RIT.JourneyDocument;
 import nl.wissehes.javatrain.model.departure.Departure;
 import nl.wissehes.javatrain.model.departure.TrainStatus;
 import nl.wissehes.javatrain.model.shared.Station;
 import nl.wissehes.javatrain.parser.DepartureParser;
+import nl.wissehes.javatrain.parser.JourneyParser;
 import org.springframework.stereotype.Component;
 
 import java.util.*;
@@ -16,6 +18,7 @@ public final class DataStore {
     private final List<Departure> departures = new LinkedList<>();
     private final List<String> rawDepartures = new LinkedList<>();
 
+    private final List<JourneyDocument> journeys = new LinkedList<>();
     private final List<String> rawJourneys = new LinkedList<>();
 
     private final Map<String, Station> stations = new HashMap<>();
@@ -54,6 +57,10 @@ public final class DataStore {
      * @param message
      */
     public void addJourney(String message) {
+
+        JourneyDocument journeyRoot = JourneyParser.parse(message);
+
+        journeys.add(journeyRoot);
         rawJourneys.add(message);
     }
 
@@ -62,6 +69,13 @@ public final class DataStore {
      */
     public List<Departure> getDepartures() {
         return departures;
+    }
+
+    /**
+     * Get the journeys
+     */
+    public List<JourneyDocument> getJourneys() {
+        return journeys;
     }
 
     /**
