@@ -23,7 +23,9 @@ public class ZmqConfig {
         ZContext context = new ZContext();
         ZMQ.Socket subscriber = context.createSocket(SocketType.SUB);
         subscriber.connect(ZMQ_SUBSCRIBER_ADDRESS);
-        subscriber.subscribe(DVS_TOPIC.getBytes(ZMQ.CHARSET)); // Subscribe to the topic
+
+        subscriber.subscribe(DVS_TOPIC.getBytes(ZMQ.CHARSET));
+        subscriber.subscribe(RIT_TOPIC.getBytes(ZMQ.CHARSET));
 
         return subscriber;
     }
