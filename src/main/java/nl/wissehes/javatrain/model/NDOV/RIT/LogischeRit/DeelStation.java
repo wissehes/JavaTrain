@@ -14,7 +14,7 @@ public class DeelStation {
     @JacksonXmlProperty(localName = "Station")
     public Station station;
 
-    @JacksonXmlProperty(localName = "StationToeganlijk")
+    @JacksonXmlProperty(localName = "StationToegankelijk")
     public NSBoolean stationToegankelijk;
 
     @JacksonXmlProperty(localName = "PresentatieStationToegankelijk")
@@ -51,10 +51,10 @@ public class DeelStation {
     @JacksonXmlElementWrapper(useWrapping = false)
     public List<Trein.VertrekTijd> vertrekTijd;
 
-    @JacksonXmlProperty(localName = "ExacteAankomstVertraging")
+    @JacksonXmlProperty(localName = "ExacteVertrekVertraging")
     public String exacteVertrekVertraging;
 
-    @JacksonXmlProperty(localName = "GedempteAankomstVertraging")
+    @JacksonXmlProperty(localName = "GedempteVertrekVertraging")
     public String gedempteVertrekVertraging;
 
     @JacksonXmlProperty(localName = "TreinAankomstSpoor")

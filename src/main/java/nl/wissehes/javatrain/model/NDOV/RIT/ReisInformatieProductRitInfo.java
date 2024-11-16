@@ -9,11 +9,11 @@ import java.util.Date;
 public class ReisInformatieProductRitInfo {
 
     @JacksonXmlProperty(localName = "Versie", isAttribute = true)
-    String versie;
+    public String versie;
 
     @JacksonXmlProperty(localName = "TimeStamp", isAttribute = true)
-    Date timeStamp;
+    public Date timeStamp;
 
     @JacksonXmlProperty(localName = "RitInfo")
-    RitInfo ritInfo;
+    public RitInfo ritInfo;
 }

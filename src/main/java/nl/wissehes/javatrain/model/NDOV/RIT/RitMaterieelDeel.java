@@ -12,16 +12,16 @@ import java.util.List;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class RitMaterieelDeel {
 
-    @JacksonXmlProperty(localName = "MaterieelDeelId")
+    @JacksonXmlProperty(localName = "MaterieelDeelID")
     public String id;
 
-    @JacksonXmlProperty(localName = "MaterieelSoort")
+    @JacksonXmlProperty(localName = "MaterieelDeelSoort")
     public String materieelSoort;
 
-    @JacksonXmlProperty(localName = "MaterieelAanduiding")
+    @JacksonXmlProperty(localName = "MaterieelDeelAanduiding")
     public String materieelAanduiding;
 
-    @JacksonXmlProperty(localName = "MaterieelLengte")
+    @JacksonXmlProperty(localName = "MaterieelDeelLengte")
     public String materieelLengte;
 
     @JacksonXmlProperty(localName = "MaterieelDeelVertrekPositie")
@@ -50,7 +50,7 @@ public class RitMaterieelDeel {
     public MaterieelDeelVolgendeLogischeRitDeel materieelDeelVolgendeLogischeRitDeel;
 
     public record MaterieelDeelVolgendeLogischeRitDeel(
-            @JacksonXmlProperty(localName = "Treindatum") String treinDatum,
+            @JacksonXmlProperty(localName = "TreinDatum") String treinDatum,
             @JacksonXmlProperty(localName = "LogischeRitDeelNummer") String logischeRitDeelNummer
     ) {}
 }
