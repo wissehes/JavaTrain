@@ -29,17 +29,25 @@ public class DataReceiver {
             while (!Thread.currentThread().isInterrupted()) {
                 String topic = subscriber.recvStr(); // Receive topic
                 byte[] messageBytes = subscriber.recv(); // Receive the compressed message as bytes
-
-                try {
-                    logger.debug("Received message on topic: {}", topic);
-
-                    String message = GZipUtils.decompress(messageBytes);
-                    dataStore.addDeparture(message);
-                } catch (IOException e) {
-                    logger.error("Failed to decompress message: {}", e.getMessage());
-                }
+                this.handleMessage(topic, messageBytes);
             }
         }).start();
+    }
+
+    private void handleMessage(String topic, byte[] messageBytes) {
+        try {
+            logger.debug("Received message on topic: {}", topic);
+
+            String message = GZipUtils.decompress(messageBytes);
+
+            if(topic.equals(ZmqConfig.DVS_TOPIC)) {
+                dataStore.addDeparture(message);
+            } else if(topic.equals(ZmqConfig.RIT_TOPIC)) {
+                dataStore.addJourney(message);
+            }
+        } catch (IOException e) {
+            logger.error("Failed to decompress message: {}", e.getMessage());
+        }
     }
 
     @PreDestroy

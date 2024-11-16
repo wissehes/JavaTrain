@@ -16,6 +16,8 @@ public final class DataStore {
     private final List<Departure> departures = new LinkedList<>();
     private final List<String> rawDepartures = new LinkedList<>();
 
+    private final List<String> rawJourneys = new LinkedList<>();
+
     private final Map<String, Station> stations = new HashMap<>();
 
     private DataStore() {
@@ -48,6 +50,14 @@ public final class DataStore {
     }
 
     /**
+     * Add a journey to the data store
+     * @param message
+     */
+    public void addJourney(String message) {
+        rawJourneys.add(message);
+    }
+
+    /**
      * Get the departures
      */
     public List<Departure> getDepartures() {
@@ -59,6 +69,13 @@ public final class DataStore {
      */
     public List<String> getRawDepartures() {
         return rawDepartures;
+    }
+
+    /**
+     * Get the raw journeys
+     */
+    public List<String> getRawJourneys() {
+        return rawJourneys;
     }
 
     /**
