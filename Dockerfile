@@ -1,5 +1,4 @@
-#FROM amazoncorretto:21.0.4-alpine3.18
-FROM openjdk:17-jdk-slim
+FROM amazoncorretto:21.0.4-alpine3.18
 
 LABEL authors="wissehes"
 EXPOSE 8080
