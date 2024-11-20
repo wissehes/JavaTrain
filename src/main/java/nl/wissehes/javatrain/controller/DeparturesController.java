@@ -1,5 +1,7 @@
 package nl.wissehes.javatrain.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import nl.wissehes.javatrain.DataStore;
 import nl.wissehes.javatrain.model.response.DeparturesResponse;
@@ -21,6 +23,9 @@ public class DeparturesController {
     }
 
     @GetMapping(value = "/{station}", produces = "application/json")
+    @Operation(summary = "Get the upcoming departures for a specific station", parameters = {
+            @Parameter(name = "station", description = "The station code, for example 'vtn' or 'ut'", required = true)
+    })
     public DeparturesResponse getDepartures(@PathVariable String station) {
         var stationData = dataStore.getStation(station).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Station not found"));
 
