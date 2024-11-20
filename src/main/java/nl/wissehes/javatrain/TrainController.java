@@ -1,6 +1,7 @@
 package nl.wissehes.javatrain;
 
 import io.swagger.v3.oas.annotations.tags.Tag;
+import nl.wissehes.javatrain.model.NDOV.RIT.JourneyDocument;
 import nl.wissehes.javatrain.model.departure.Departure;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -18,12 +19,7 @@ public class TrainController {
         this.dataStore = dataStore;
     }
 
-    @GetMapping(value = "/received", produces = "application/json")
-    public Departure getReceivedMessages() {
-        return dataStore.getDepartures().getLast();
-    }
-
-    @GetMapping(value = "/received/raw", produces = "application/xml")
+    @GetMapping(value = "/raw/departures", produces = "application/xml")
     public String getReceivedMessagesRaw(@RequestParam(required = false) Integer index) {
         if (index != null) {
             return dataStore.getRawDepartures().get(index);
@@ -32,7 +28,7 @@ public class TrainController {
         return dataStore.getRawDepartures().getLast();
     }
 
-    @GetMapping(value = "/received/raw/all", produces = "application/xml")
+    @GetMapping(value = "/raw/departures/all", produces = "application/xml")
     public List<String> getReceivedMessagesRawAll() {
         return dataStore.getRawDepartures();
     }
