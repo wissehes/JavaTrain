@@ -18,6 +18,9 @@ public class RitInfo {
     @JacksonXmlProperty(localName = "TreinSoort")
     public Trein.TreinSoort soort;
 
+    @JacksonXmlProperty(localName = "LijnNummer")
+    public String lijnNummer;
+
     @JacksonXmlProperty(localName = "Vervoerder")
     public String vervoerder;
 

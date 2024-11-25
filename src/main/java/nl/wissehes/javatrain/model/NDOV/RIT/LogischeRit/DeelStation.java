@@ -30,6 +30,9 @@ public class DeelStation {
     @JacksonXmlElementWrapper(useWrapping = false)
     public List<Trein.Eindbestemming> eindBestemming;
 
+    @JacksonXmlProperty(localName = "HerkenbareBestemming")
+    public HerkenbareBestemming herkenbareBestemming;
+
     @JacksonXmlProperty(localName = "PresentatieTreinEindBestemming")
     public LocalizedUiting presentatieTreinEindBestemming;
 
@@ -85,5 +88,10 @@ public class DeelStation {
     public record StopStatus(
             @JacksonXmlProperty(localName = "InfoStatus") InfoStatus infoStatus,
             @JacksonXmlProperty(localName = "") NSBoolean stopStatus
+    ) {}
+
+    public record HerkenbareBestemming(
+            @JacksonXmlProperty(localName = "Station") Station station,
+            @JacksonXmlProperty(localName = "PresentatieHerkenbareBestemming") LocalizedUiting presentatie
     ) {}
 }
