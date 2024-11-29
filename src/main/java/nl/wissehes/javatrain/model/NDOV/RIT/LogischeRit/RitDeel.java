@@ -10,6 +10,9 @@ import java.util.List;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class RitDeel {
 
+    @JacksonXmlProperty(localName = "LogischeRitDeelNummer")
+    public String deelNummer;
+
     @JacksonXmlProperty(localName = "LogischeRitDeelStation")
     @JacksonXmlElementWrapper(useWrapping = false)
     public List<DeelStation> stops;
