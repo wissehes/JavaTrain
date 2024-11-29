@@ -2,6 +2,8 @@ package nl.wissehes.javatrain.model.journey;
 
 import nl.wissehes.javatrain.model.shared.Station;
 
+import java.util.Date;
+
 public class Stop {
 
     public Station station;
@@ -15,8 +17,8 @@ public class Stop {
 
     /** Arrivals */
 
-    public String plannedArrivalTime;
-    public String actualArrivalTime;
+    public Date plannedArrivalTime;
+    public Date actualArrivalTime;
     public String plannedArrivalPlatform;
     public String actualArrivalPlatform;
     public boolean arrivalCancelled;
@@ -27,8 +29,8 @@ public class Stop {
 
     /** Departures */
 
-    public String plannedDepartureTime;
-    public String actualDepartureTime;
+    public Date plannedDepartureTime;
+    public Date actualDepartureTime;
     public String plannedDeparturePlatform;
     public String actualDeparturePlatform;
     public boolean departureCancelled;
