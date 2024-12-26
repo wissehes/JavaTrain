@@ -64,9 +64,13 @@ public class Trein {
     @JacksonXmlProperty(localName = "GedempteVertrekVertraging")
     public String gedempteVertrekVertraging;
 
+    @JacksonXmlProperty(localName = "TreinAankomstSpoor")
+    @JacksonXmlElementWrapper(useWrapping = false)
+    public List<TreinSpoor> treinAankomstSpoor;
+
     @JacksonXmlProperty(localName = "TreinVertrekSpoor")
     @JacksonXmlElementWrapper(useWrapping = false)
-    public List<TreinVertrekSpoor> treinVertrekSpoor;
+    public List<TreinSpoor> treinVertrekSpoor;
 
     @JacksonXmlProperty(localName = "PresentatieTreinVertrekSpoor")
     public LocalizedUiting PresentatieTreinVertrekSpoor;
@@ -112,12 +116,6 @@ public class Trein {
     public record VertrekTijd(
             @JacksonXmlProperty(localName = "InfoStatus", isAttribute = true) InfoStatus infoStatus,
             @JacksonXmlProperty(localName = "") Date date
-    ){}
-
-    public record TreinVertrekSpoor(
-            @JacksonXmlProperty(localName = "InfoStatus", isAttribute = true) InfoStatus infoStatus,
-            @JacksonXmlProperty(localName = "SpoorNummer") String value,
-            @JacksonXmlProperty(localName = "SpoorFase") String spoorFase
     ){}
 
     public static class Eindbestemming extends Station {

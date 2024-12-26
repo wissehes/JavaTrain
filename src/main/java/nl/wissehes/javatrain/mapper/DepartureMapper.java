@@ -4,8 +4,9 @@ import nl.wissehes.javatrain.model.NDOV.DVS.DepartureDocument;
 import nl.wissehes.javatrain.model.NDOV.DVS.DynamischeVertrekStaat;
 import nl.wissehes.javatrain.model.NDOV.InfoStatus;
 import nl.wissehes.javatrain.model.NDOV.Trein;
+import nl.wissehes.javatrain.model.NDOV.TreinSpoor;
 import nl.wissehes.javatrain.model.departure.Departure;
-import nl.wissehes.javatrain.model.departure.ScheduleChange;
+import nl.wissehes.javatrain.model.shared.ScheduleChange;
 import nl.wissehes.javatrain.model.departure.SpecialFlags;
 import nl.wissehes.javatrain.model.departure.TrainStatus;
 import nl.wissehes.javatrain.model.shared.Station;
@@ -132,8 +133,8 @@ public class DepartureMapper {
             return null;
         }
 
-        Trein.TreinVertrekSpoor spoor = getTrein().treinVertrekSpoor.stream()
-            .filter(vertrekSpoor -> vertrekSpoor.infoStatus() == status)
+        TreinSpoor spoor = getTrein().treinVertrekSpoor.stream()
+            .filter(vertrekSpoor -> vertrekSpoor.infoStatus == status)
             .findFirst()
             .orElse(null);
 
@@ -141,10 +142,6 @@ public class DepartureMapper {
             return null;
         }
 
-        if(spoor.spoorFase() != null) {
-            return spoor.value() + spoor.spoorFase();
-        } else {
-            return spoor.value();
-        }
+        return spoor.getValue();
     }
 }

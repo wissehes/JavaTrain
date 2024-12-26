@@ -5,6 +5,7 @@ import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import nl.wissehes.javatrain.model.NDOV.LocalizedUiting;
 import nl.wissehes.javatrain.model.NDOV.Station;
 import nl.wissehes.javatrain.model.NDOV.Trein;
+import nl.wissehes.javatrain.model.NDOV.TreinSpoor;
 
 import java.util.Date;
 
@@ -24,7 +25,7 @@ public class InstapTip {
     public Date instapTipVertrekTijd;
 
     @JacksonXmlProperty(localName = "InstapTipVertrekSpoor")
-    public Trein.TreinVertrekSpoor instapTipVertrekSpoor;
+    public TreinSpoor instapTipVertrekSpoor;
 
     @JacksonXmlProperty(localName = "PresentatieInstapTip")
     public LocalizedUiting presentatieInstapTip;

@@ -9,7 +9,7 @@ import java.util.List;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class TreinVleugel {
     @JacksonXmlProperty(localName = "TreinVleugelVertrekSpoor")
-    public Trein.TreinVertrekSpoor vertrekSpoor;
+    public TreinSpoor vertrekSpoor;
 
     @JacksonXmlProperty(localName = "PresentatieTreinVleugelVertrekSpoor")
     public LocalizedUiting presentatieVertrekSpoor;

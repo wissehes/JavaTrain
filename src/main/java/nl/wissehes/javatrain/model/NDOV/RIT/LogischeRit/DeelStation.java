@@ -62,11 +62,11 @@ public class DeelStation {
 
     @JacksonXmlProperty(localName = "TreinAankomstSpoor")
     @JacksonXmlElementWrapper(useWrapping = false)
-    public List<Trein.TreinVertrekSpoor> treinAankomstSpoor;
+    public List<TreinSpoor> treinAankomstSpoor;
 
     @JacksonXmlProperty(localName = "TreinVertrekSpoor")
     @JacksonXmlElementWrapper(useWrapping = false)
-    public List<Trein.TreinVertrekSpoor> treinVertrekSpoor;
+    public List<TreinSpoor> treinVertrekSpoor;
 
     @JacksonXmlProperty(localName = "StationnementType")
     public String stationnementType;
