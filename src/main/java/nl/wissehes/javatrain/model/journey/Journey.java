@@ -1,7 +1,7 @@
 package nl.wissehes.javatrain.model.journey;
 
 import nl.wissehes.javatrain.model.NDOV.Trein;
-import nl.wissehes.javatrain.model.departure.ScheduleChange;
+import nl.wissehes.javatrain.model.shared.ScheduleChange;
 
 import java.util.List;
 
