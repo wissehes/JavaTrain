@@ -1,8 +1,9 @@
 package nl.wissehes.javatrain.model.journey;
 
+import nl.wissehes.javatrain.model.shared.ScheduleChange;
 import nl.wissehes.javatrain.model.shared.Station;
 
-import java.util.Date;
+import java.util.List;
 
 public class Stop {
 
@@ -15,27 +16,12 @@ public class Stop {
     public Station plannedDestination;
     public Station actualDestination;
 
-    /** Arrivals */
+    /** Arrival */
+    public Movement arrival;
 
-    public Date plannedArrivalTime;
-    public Date actualArrivalTime;
-    public String plannedArrivalPlatform;
-    public String actualArrivalPlatform;
-    public boolean arrivalCancelled;
-    /** Delay in seconds */
-    public long exactArrivalDelay;
-    /** Delay normalized to minutes rounded to the closest 5 */
-    public long normalizedArrivalDelay;
+    /** Departure */
+    public Movement departure;
 
-    /** Departures */
+    public List<ScheduleChange> changes;
 
-    public Date plannedDepartureTime;
-    public Date actualDepartureTime;
-    public String plannedDeparturePlatform;
-    public String actualDeparturePlatform;
-    public boolean departureCancelled;
-    /** Delay in seconds */
-    public long exactDepartureDelay;
-    /** Delay normalized to minutes rounded to the closest 5 */
-    public long normalizedDepartureDelay;
 }
