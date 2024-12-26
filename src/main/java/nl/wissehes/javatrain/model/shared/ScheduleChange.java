@@ -1,7 +1,6 @@
-package nl.wissehes.javatrain.model.departure;
+package nl.wissehes.javatrain.model.shared;
 
 import nl.wissehes.javatrain.model.NDOV.Wijziging;
-import nl.wissehes.javatrain.model.shared.Station;
 
 public class ScheduleChange {
     public ChangeType type;
