@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.Comparator;
+import java.util.List;
 
 @RestController
 @RequestMapping("/departures")
@@ -37,4 +38,19 @@ public class DeparturesController {
 
         return new DeparturesResponse(stationData, departures);
     }
+
+    @GetMapping(value = "/raw", produces = "application/xml")
+    public String getReceivedMessagesRaw(@RequestParam(required = false) Integer index) {
+        if (index != null) {
+            return dataStore.getRawDepartures().get(index);
+        }
+
+        return dataStore.getRawDepartures().getLast();
+    }
+
+    @GetMapping(value = "/raw/all", produces = "application/xml")
+    public List<String> getReceivedMessagesRawAll() {
+        return dataStore.getRawDepartures();
+    }
+
 }
