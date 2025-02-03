@@ -1,10 +1,13 @@
 package nl.wissehes.javatrain;
 
 import nl.wissehes.javatrain.mapper.DepartureMapper;
+import nl.wissehes.javatrain.mapper.JourneyMapper;
 import nl.wissehes.javatrain.model.NDOV.DVS.DepartureDocument;
 import nl.wissehes.javatrain.model.NDOV.RIT.JourneyDocument;
 import nl.wissehes.javatrain.model.departure.Departure;
 import nl.wissehes.javatrain.model.departure.TrainStatus;
+import nl.wissehes.javatrain.model.journey.Journey;
+import nl.wissehes.javatrain.model.journey.JourneyPart;
 import nl.wissehes.javatrain.model.shared.Station;
 import nl.wissehes.javatrain.parser.DepartureParser;
 import nl.wissehes.javatrain.parser.JourneyParser;
@@ -18,7 +21,7 @@ public final class DataStore {
     private final List<Departure> departures = new LinkedList<>();
     private final List<String> rawDepartures = new LinkedList<>();
 
-    private final List<JourneyDocument> journeys = new LinkedList<>();
+    private final List<Journey> journeys = new LinkedList<>();
     private final List<String> rawJourneys = new LinkedList<>();
 
     private final Map<String, Station> stations = new HashMap<>();
@@ -59,8 +62,12 @@ public final class DataStore {
     public void addJourney(String message) {
 
         JourneyDocument journeyRoot = JourneyParser.parse(message);
+        Journey mapped = new JourneyMapper(journeyRoot).mapJourney();
 
-        journeys.add(journeyRoot);
+        // Remove any existing items with the same ID
+        journeys.removeIf(j -> j.id.equals(mapped.id));
+
+        journeys.add(mapped);
         rawJourneys.add(message);
     }
 
@@ -74,7 +81,7 @@ public final class DataStore {
     /**
      * Get the journeys
      */
-    public List<JourneyDocument> getJourneys() {
+    public List<Journey> getJourneys() {
         return journeys;
     }
 

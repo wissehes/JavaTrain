@@ -3,8 +3,6 @@ package nl.wissehes.javatrain.controller;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import nl.wissehes.javatrain.DataStore;
-import nl.wissehes.javatrain.mapper.JourneyMapper;
-import nl.wissehes.javatrain.model.NDOV.RIT.JourneyDocument;
 import nl.wissehes.javatrain.model.journey.Journey;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -31,12 +29,11 @@ public class JourneysController {
     @GetMapping(value = "/{code}")
     @Operation(summary = "Get a specific journey by its code")
     public Journey getJourney(@PathVariable String code) {
-        JourneyDocument item = dataStore.getJourneys().stream()
-                .filter(j -> j.reisInformatieProduct.ritInfo.nummer.equals(code))
+
+        return dataStore.getJourneys().stream()
+                .filter(j -> j.id.equals(code))
                 .findFirst()
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Journey not found"));
-
-        return new JourneyMapper(item).mapJourney();
     }
 
     @GetMapping(value = "/raw/all", produces = "application/xml")
