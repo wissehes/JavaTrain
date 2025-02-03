@@ -96,6 +96,10 @@ public class JourneyMapper {
             stop.departure = mapMovement(station.vertrekTijd, station.treinVertrekSpoor, station.exacteVertrekVertraging, station.gedempteVertrekVertraging, station.wijzigingen);
         }
 
+        if(station.wijzigingen != null) {
+            stop.changes = station.wijzigingen.stream().map(ScheduleChange::new).toList();
+        }
+
         return stop;
     }
 
