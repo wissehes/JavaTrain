@@ -1,18 +1,6 @@
 package nl.wissehes.javatrain.model.position;
 
-import org.w3c.dom.Document;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
-import org.xml.sax.SAXException;
-
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 public class TrainPosition {
 
@@ -28,4 +16,13 @@ public class TrainPosition {
     public Date locationDate;
     public String source;
 
+    public String getId() {
+        String base = trainNumber + "-" + materialNumber;
+
+        if(sequenceNumber != null) {
+            return base + "-" + sequenceNumber;
+        }
+
+        return base;
     }
+}
