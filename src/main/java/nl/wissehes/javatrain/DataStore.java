@@ -7,7 +7,6 @@ import nl.wissehes.javatrain.model.NDOV.RIT.JourneyDocument;
 import nl.wissehes.javatrain.model.departure.Departure;
 import nl.wissehes.javatrain.model.departure.TrainStatus;
 import nl.wissehes.javatrain.model.journey.Journey;
-import nl.wissehes.javatrain.model.journey.JourneyPart;
 import nl.wissehes.javatrain.model.shared.Station;
 import nl.wissehes.javatrain.parser.DepartureParser;
 import nl.wissehes.javatrain.parser.JourneyParser;
@@ -23,6 +22,8 @@ public final class DataStore {
 
     private final List<Journey> journeys = new LinkedList<>();
     private final List<String> rawJourneys = new LinkedList<>();
+
+    private final List<String> rawPositions = new LinkedList<>();
 
     private final Map<String, Station> stations = new HashMap<>();
 
@@ -72,6 +73,14 @@ public final class DataStore {
     }
 
     /**
+     * Add a position to the data store
+     * @param message
+     */
+    public void addPosition(String message) {
+        rawPositions.add(message);
+    }
+
+    /**
      * Get the departures
      */
     public List<Departure> getDepartures() {
@@ -97,6 +106,13 @@ public final class DataStore {
      */
     public List<String> getRawJourneys() {
         return rawJourneys;
+    }
+
+    /**
+     * Get the raw positions
+     */
+    public List<String> getRawPositions() {
+        return rawPositions;
     }
 
     /**
