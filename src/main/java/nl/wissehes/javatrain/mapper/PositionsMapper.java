@@ -43,6 +43,7 @@ public class PositionsMapper {
 
         position.trainNumber = item.treinNummer;
         position.materialNumber = deel.materieelDeelNummer;
+        position.sequenceNumber = deel.volgNummer;
         position.locationDate = deel.gpsDatumTijd;
         position.source = deel.bron;
         position.longitude = deel.longitude;
