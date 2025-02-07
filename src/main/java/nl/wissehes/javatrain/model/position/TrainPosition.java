@@ -17,12 +17,6 @@ public class TrainPosition {
     public String source;
 
     public String getId() {
-        String base = trainNumber + "-" + materialNumber;
-
-        if(sequenceNumber != null) {
-            return base + "-" + sequenceNumber;
-        }
-
-        return base;
+        return materialNumber;
     }
 }
