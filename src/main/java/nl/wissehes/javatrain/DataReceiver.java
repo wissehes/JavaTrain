@@ -40,10 +40,10 @@ public class DataReceiver {
 
             String message = GZipUtils.decompress(messageBytes);
 
-            if(topic.equals(ZmqConfig.DVS_TOPIC)) {
-                dataStore.addDeparture(message);
-            } else if(topic.equals(ZmqConfig.RIT_TOPIC)) {
-                dataStore.addJourney(message);
+            switch (topic) {
+                case ZmqConfig.DVS_TOPIC -> dataStore.addDeparture(message);
+                case ZmqConfig.RIT_TOPIC -> dataStore.addJourney(message);
+                case ZmqConfig.POS_TOPIC -> dataStore.addPosition(message);
             }
         } catch (IOException e) {
             logger.error("Failed to decompress message: {}", e.getMessage());

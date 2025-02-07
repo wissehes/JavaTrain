@@ -2,12 +2,13 @@ package nl.wissehes.javatrain;
 
 import nl.wissehes.javatrain.mapper.DepartureMapper;
 import nl.wissehes.javatrain.mapper.JourneyMapper;
+import nl.wissehes.javatrain.mapper.PositionsMapper;
 import nl.wissehes.javatrain.model.NDOV.DVS.DepartureDocument;
 import nl.wissehes.javatrain.model.NDOV.RIT.JourneyDocument;
 import nl.wissehes.javatrain.model.departure.Departure;
 import nl.wissehes.javatrain.model.departure.TrainStatus;
 import nl.wissehes.javatrain.model.journey.Journey;
-import nl.wissehes.javatrain.model.journey.JourneyPart;
+import nl.wissehes.javatrain.model.position.TrainPosition;
 import nl.wissehes.javatrain.model.shared.Station;
 import nl.wissehes.javatrain.parser.DepartureParser;
 import nl.wissehes.javatrain.parser.JourneyParser;
@@ -23,6 +24,9 @@ public final class DataStore {
 
     private final List<Journey> journeys = new LinkedList<>();
     private final List<String> rawJourneys = new LinkedList<>();
+
+    private final HashMap<String, TrainPosition> positions = new HashMap<>();
+    private final List<String> rawPositions = new LinkedList<>();
 
     private final Map<String, Station> stations = new HashMap<>();
 
@@ -72,6 +76,20 @@ public final class DataStore {
     }
 
     /**
+     * Add a position to the data store
+     * @param message
+     */
+    public void addPosition(String message) {
+        rawPositions.add(message);
+
+        List<TrainPosition> mappedPositions = new PositionsMapper(message).mapPositions();
+
+        for (TrainPosition position : mappedPositions) {
+            positions.put(position.trainNumber, position);
+        }
+    }
+
+    /**
      * Get the departures
      */
     public List<Departure> getDepartures() {
@@ -86,6 +104,13 @@ public final class DataStore {
     }
 
     /**
+     * Get the positions
+     */
+    public List<TrainPosition> getPositions() {
+        return new ArrayList<>(positions.values());
+    }
+
+    /**
      * Get the raw departures
      */
     public List<String> getRawDepartures() {
@@ -97,6 +122,13 @@ public final class DataStore {
      */
     public List<String> getRawJourneys() {
         return rawJourneys;
+    }
+
+    /**
+     * Get the raw positions
+     */
+    public List<String> getRawPositions() {
+        return rawPositions;
     }
 
     /**

@@ -17,6 +17,8 @@ public class ZmqConfig {
     public static final String DAS_TOPIC = "/RIG/InfoPlusDASInterface4";
     /** Services */
     public static final String RIT_TOPIC = "/RIG/InfoPlusRITInterface5";
+    /** Positions */
+    public static final String POS_TOPIC = "/RIG/NStreinpositiesInterface5";
 
     @Bean(destroyMethod = "close")
     public ZMQ.Socket zmqSubscriber() {
@@ -26,6 +28,7 @@ public class ZmqConfig {
 
         subscriber.subscribe(DVS_TOPIC.getBytes(ZMQ.CHARSET));
         subscriber.subscribe(RIT_TOPIC.getBytes(ZMQ.CHARSET));
+        subscriber.subscribe(POS_TOPIC.getBytes(ZMQ.CHARSET));
 
         return subscriber;
     }
