@@ -12,12 +12,16 @@ import nl.wissehes.javatrain.model.position.TrainPosition;
 import nl.wissehes.javatrain.model.shared.Station;
 import nl.wissehes.javatrain.parser.DepartureParser;
 import nl.wissehes.javatrain.parser.JourneyParser;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.util.*;
 
 @Component
 public final class DataStore {
+
+    @Value("${app.datastore.store-raw-messages}")
+    private boolean shouldStoreRaw;
 
     private final List<Departure> departures = new LinkedList<>();
     private final List<String> rawDepartures = new LinkedList<>();
@@ -38,7 +42,9 @@ public final class DataStore {
      * @param message
      */
     public void addDeparture(String message) {
-        rawDepartures.add(message);
+        if (shouldStoreRaw) {
+            rawDepartures.add(message);
+        }
 
         DepartureDocument departureRoot = DepartureParser.parse(message);
         Departure mapped = new DepartureMapper(departureRoot).mapDeparture();
@@ -72,15 +78,19 @@ public final class DataStore {
         journeys.removeIf(j -> j.id.equals(mapped.id));
 
         journeys.add(mapped);
-        rawJourneys.add(message);
+        if(shouldStoreRaw) {
+            rawJourneys.add(message);
+        }
     }
 
     /**
-     * Add a position to the data store
+     * Add the received positions to the map
      * @param message
      */
     public void addPosition(String message) {
-        rawPositions.add(message);
+        if(shouldStoreRaw) {
+            rawPositions.add(message);
+        }
 
         List<TrainPosition> mappedPositions = new PositionsMapper(message).mapPositions();
 
