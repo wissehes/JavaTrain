@@ -32,7 +32,7 @@ public class DeparturesController {
 
         var departures = dataStore.getDepartures()
                 .stream()
-                .filter(d -> d.forStation.equals(stationData))
+                .filter(d -> d.forStation.equals(stationData) && (d.departureTime.getTime() - System.currentTimeMillis()) > 0)
                 .sorted(Comparator.comparing(d -> d.departureTime))
                 .toList();
 
