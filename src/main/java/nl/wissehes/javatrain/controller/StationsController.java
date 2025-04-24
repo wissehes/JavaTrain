@@ -48,4 +48,9 @@ public class StationsController {
         return stations.stream().filter(s -> s.longName.toLowerCase().contains(query.toLowerCase())).collect(Collectors.toList());
     }
 
+    @QueryMapping
+    public Station stationByCode(@Argument String code) {
+        return this.getStationByCode(code);
+    }
+
 }

@@ -1,10 +1,8 @@
 type Query {
     positions: [TrainPosition]
     departures(station: String!): [Departure]
+
     stations: [Station]
     stationSearch(query: String!): [Station]
-}
-
-type Train {
-    name: String
+    stationByCode(code: String!): Station
 }
