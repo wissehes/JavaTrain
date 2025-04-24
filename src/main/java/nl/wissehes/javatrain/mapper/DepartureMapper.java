@@ -38,7 +38,7 @@ public class DepartureMapper {
         departure.journeyId = dvs.trein.treinNummer;
         departure.baseJourneyId = dvs.ritId;
         departure.journeyDate = dvs.ritDatum;
-        departure.serviceName = null; // TODO: Add service name?
+        departure.serviceName = trein.treinNaam;
         departure.lineName = trein.lijnNummer;
         departure.forStation = new Station(dvs.ritStation);
         departure.serviceNumber = trein.treinNummer;
@@ -122,7 +122,7 @@ public class DepartureMapper {
      */
     private List<Station> getViaStations(InfoStatus status) {
         if(getTrein().verkorteRoute == null) {
-            // return emptyu list
+            // return empty list
             return List.of();
         }
 

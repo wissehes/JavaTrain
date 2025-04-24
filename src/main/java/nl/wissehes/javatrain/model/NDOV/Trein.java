@@ -23,6 +23,9 @@ public class Trein {
     @JacksonXmlProperty(localName = "TreinFormule")
     public String treinFormule;
 
+    @JacksonXmlProperty(localName = "TreinNaam")
+    public String treinNaam;
+
     @JacksonXmlProperty(localName = "Vervoerder")
     public String vervoerder;
 
