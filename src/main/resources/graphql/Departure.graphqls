@@ -1,0 +1,42 @@
+type Departure {
+    journeyId: String!
+    journeyDate: String!
+    serviceName: String
+    lineName: String
+
+    plannedDestination: [Station]
+    actualDestination: [Station]
+    destinationDisplay: String
+
+    plannedViaStations: [Station]
+    actualViaStations: [Station]
+
+    serviceNumber: String!
+    serviceType: String!
+    serviceTypeCode: String!
+
+    operator: String!
+
+    departureTime: String!
+    actualDepartureTime: String!
+
+    """
+    Delay in seconds
+    """
+    exactDelay: Int
+
+    """
+    Delay normalized to minutes rounded to the closest 5
+    """
+    delayNormalized: Int
+
+    plannedPlatform: String
+    actualPlatform: String
+    departureDirection: String
+
+    # TODO:
+#    public SpecialFlags specialFlags;
+#    public TrainStatus trainStatus;
+#
+#    public List<ScheduleChange> scheduleChanges;
+}

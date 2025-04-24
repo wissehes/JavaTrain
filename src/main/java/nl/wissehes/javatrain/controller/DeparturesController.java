@@ -4,7 +4,10 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import nl.wissehes.javatrain.DataStore;
+import nl.wissehes.javatrain.model.departure.Departure;
 import nl.wissehes.javatrain.model.response.DeparturesResponse;
+import org.springframework.graphql.data.method.annotation.Argument;
+import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
@@ -53,4 +56,8 @@ public class DeparturesController {
         return dataStore.getRawDepartures();
     }
 
+    @QueryMapping
+    public List<Departure> departures(@Argument String station) {
+        return this.getDepartures(station).departures;
+    }
 }
