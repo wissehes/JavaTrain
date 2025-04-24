@@ -1,0 +1,20 @@
+type Station {
+    code: String!
+    type: StationType
+    uicCode: Int!
+
+    shortName: String!
+    mediumName: String!
+    longName: String!
+}
+
+enum StationType {
+    LOCAL_STATION,
+    LOCAL_STATION_JUNCTION,
+    EXPRESS_STATION,
+    EXPRESS_STATION_JUNCTION,
+    INTERCITY_STATION,
+    INTERCITY_STATION_JUNCTION,
+    MEGA_STATION,
+    FACULTATIVE_STATION
+}
