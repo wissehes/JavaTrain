@@ -16,6 +16,7 @@ type Departure {
     serviceTypeCode: String!
 
     operator: String!
+    trainStatus: TrainStatus
 
     departureTime: String!
     actualDepartureTime: String!
@@ -36,7 +37,14 @@ type Departure {
 
     # TODO:
 #    public SpecialFlags specialFlags;
-#    public TrainStatus trainStatus;
-#
 #    public List<ScheduleChange> scheduleChanges;
+}
+
+enum TrainStatus {
+    UNKNOWN,
+    APPROACHING,
+    INCOMING,
+    DOORS_OPENED,
+    DOORS_CLOSED,
+    DEPARTED
 }
