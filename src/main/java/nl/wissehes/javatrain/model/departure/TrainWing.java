@@ -19,9 +19,9 @@ public record TrainWing(
             Station actualDestination,
             String type,
             /** Length in meters */
-            String length,
-            String departurePosition,
-            String departureOrder,
+            int length,
+            int departurePosition,
+            int departureOrder,
             List<ScheduleChange> scheduleChanges
     ) {
     }

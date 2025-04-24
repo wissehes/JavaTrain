@@ -10,6 +10,7 @@ type Departure {
 
     plannedViaStations: [Station]
     actualViaStations: [Station]
+    wings: [TrainWing]
 
     serviceNumber: String!
     serviceType: String!
@@ -38,6 +39,27 @@ type Departure {
     # TODO:
 #    public SpecialFlags specialFlags;
 #    public List<ScheduleChange> scheduleChanges;
+}
+
+type TrainWing {
+    destination: Station!
+    actualDestination: Station
+    platform: String
+    actualPlatform: String
+    materialParts: [MaterialPart]
+}
+
+type MaterialPart {
+    id: ID!
+    destination: Station!
+    actualDestination: Station
+    type: String
+    """
+    Length in meters
+    """
+    length: Int
+    departurePosition: Int
+    departureOrder: Int
 }
 
 enum TrainStatus {

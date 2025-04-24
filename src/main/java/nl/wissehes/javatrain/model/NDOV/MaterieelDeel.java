@@ -18,13 +18,13 @@ public class MaterieelDeel {
     public String materieelAanduiding;
 
     @JacksonXmlProperty(localName = "MaterieelLengte")
-    public String materieelLengte;
+    public int materieelLengte;
 
     @JacksonXmlProperty(localName = "MaterieelDeelVertrekPositie")
-    public String materieelDeelVertrekPositie;
+    public int materieelDeelVertrekPositie;
 
     @JacksonXmlProperty(localName = "MaterieelDeelVolgordeVertrek")
-    public String materieelDeelVolgordeVertrek;
+    public int materieelDeelVolgordeVertrek;
 
     @JacksonXmlProperty(localName = "MaterieelNummer")
     public String materieelNummer;
