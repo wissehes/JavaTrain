@@ -5,7 +5,9 @@ import nl.wissehes.javatrain.model.NDOV.DVS.DynamischeVertrekStaat;
 import nl.wissehes.javatrain.model.NDOV.InfoStatus;
 import nl.wissehes.javatrain.model.NDOV.Trein;
 import nl.wissehes.javatrain.model.NDOV.TreinSpoor;
+import nl.wissehes.javatrain.model.NDOV.TreinVleugel;
 import nl.wissehes.javatrain.model.departure.Departure;
+import nl.wissehes.javatrain.model.departure.TrainWing;
 import nl.wissehes.javatrain.model.shared.ScheduleChange;
 import nl.wissehes.javatrain.model.departure.SpecialFlags;
 import nl.wissehes.javatrain.model.departure.TrainStatus;
@@ -33,7 +35,8 @@ public class DepartureMapper {
 
         Departure departure = new Departure();
 
-        departure.journeyId = dvs.ritId;
+        departure.journeyId = dvs.trein.treinNummer;
+        departure.baseJourneyId = dvs.ritId;
         departure.journeyDate = dvs.ritDatum;
         departure.serviceName = null; // TODO: Add service name?
         departure.lineName = trein.lijnNummer;
@@ -73,6 +76,8 @@ public class DepartureMapper {
         );
         departure.trainStatus = TrainStatus.fromCode(trein.treinStatus);
 
+        departure.wings = mapWings(trein.treinVleugel);
+
         return departure;
     }
 
@@ -101,9 +106,19 @@ public class DepartureMapper {
     }
 
     /**
+     * Get the destinations for a specific status
+     */
+    private Station getDestination(List<Trein.Eindbestemming> item, InfoStatus status) {
+        return item
+                .stream()
+                .filter(eindBestemming -> eindBestemming.InfoStatus == status)
+                .map(Station::new)
+                .toList()
+                .getFirst();
+    }
+
+    /**
      * Get the stations in between for a specific status
-     * @param status
-     * @return
      */
     private List<Station> getViaStations(InfoStatus status) {
         if(getTrein().verkorteRoute == null) {
@@ -143,5 +158,45 @@ public class DepartureMapper {
         }
 
         return spoor.getValue();
+    }
+
+    /**
+     * Get the platform for a specific status
+     */
+    private String getPlatform(List<TreinSpoor> item, InfoStatus status) {
+        if(getTrein().treinVertrekSpoor == null) {
+            return null;
+        }
+
+        TreinSpoor spoor = item.stream()
+                .filter(vertrekSpoor -> vertrekSpoor.infoStatus == status)
+                .findFirst()
+                .orElse(null);
+
+        if(spoor == null) {
+            return null;
+        }
+
+        return spoor.getValue();
+    }
+
+    private List<TrainWing> mapWings(List<TreinVleugel> treinVleugels) {
+        return treinVleugels.stream()
+            .map(treinVleugel -> new TrainWing(
+                    getDestination(treinVleugel.eindBestemming, InfoStatus.GEPLAND),
+                    getDestination(treinVleugel.eindBestemming, InfoStatus.ACTUEEL),
+                    getPlatform(treinVleugel.vertrekSpoor, InfoStatus.GEPLAND),
+                    getPlatform(treinVleugel.vertrekSpoor, InfoStatus.ACTUEEL),
+                    treinVleugel.materieelDelen.stream().map(materieelDeel -> new TrainWing.MaterialPart(
+                            materieelDeel.materieelNummer,
+                            getDestination(materieelDeel.eindBestemming, InfoStatus.GEPLAND),
+                            getDestination(materieelDeel.eindBestemming, InfoStatus.ACTUEEL),
+                            materieelDeel.materieelSoort + "-" + materieelDeel.materieelAanduiding,
+                            materieelDeel.materieelLengte,
+                            materieelDeel.materieelDeelVertrekPositie,
+                            materieelDeel.materieelDeelVolgordeVertrek,
+                            materieelDeel.wijzigingen.stream().map(ScheduleChange::new).toList()
+                    )).toList()
+            )).toList();
     }
 }

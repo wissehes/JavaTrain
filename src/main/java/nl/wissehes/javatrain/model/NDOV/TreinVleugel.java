@@ -9,7 +9,8 @@ import java.util.List;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class TreinVleugel {
     @JacksonXmlProperty(localName = "TreinVleugelVertrekSpoor")
-    public TreinSpoor vertrekSpoor;
+    @JacksonXmlElementWrapper(useWrapping = false)
+    public List<TreinSpoor> vertrekSpoor;
 
     @JacksonXmlProperty(localName = "PresentatieTreinVleugelVertrekSpoor")
     public LocalizedUiting presentatieVertrekSpoor;
@@ -27,5 +28,5 @@ public class TreinVleugel {
 
     @JacksonXmlProperty(localName = "MaterieelDeelDVS")
     @JacksonXmlElementWrapper(useWrapping = false)
-    public List<MaterieelDeel> materieelDelen;
+    public List<MaterieelDeel> materieelDelen = List.of();
 }

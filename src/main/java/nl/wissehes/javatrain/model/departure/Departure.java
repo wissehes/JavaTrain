@@ -11,6 +11,7 @@ import java.util.List;
 public class Departure {
 
     public String journeyId;
+    public String baseJourneyId;
     public String journeyDate;
     public String serviceName;
     public String lineName;
@@ -46,6 +47,8 @@ public class Departure {
     public TrainStatus trainStatus;
 
     public List<ScheduleChange> scheduleChanges;
+
+    public List<TrainWing> wings;
 
     public Boolean getIsCancelled() {
         return this.scheduleChanges

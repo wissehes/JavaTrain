@@ -90,7 +90,7 @@ public class Trein {
 
     @JacksonXmlProperty(localName = "TreinVleugel")
     @JacksonXmlElementWrapper(useWrapping = false)
-    public List<TreinVleugel> treinVleugel;
+    public List<TreinVleugel> treinVleugel = List.of();
 
     @JacksonXmlProperty(localName = "Wijziging")
     @JacksonXmlElementWrapper(useWrapping = false)

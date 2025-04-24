@@ -27,7 +27,7 @@ public class MaterieelDeel {
     public String materieelDeelVolgordeVertrek;
 
     @JacksonXmlProperty(localName = "MaterieelNummer")
-    public String materieelMummer;
+    public String materieelNummer;
 
     @JacksonXmlProperty(localName = "MaterieelDeelEindBestemming")
     @JacksonXmlElementWrapper(useWrapping = false)
@@ -38,5 +38,5 @@ public class MaterieelDeel {
 
     @JacksonXmlProperty(localName = "Wijziging")
     @JacksonXmlElementWrapper(useWrapping = false)
-    public List<Wijziging> wijzigingen;
+    public List<Wijziging> wijzigingen = List.of();
 }
