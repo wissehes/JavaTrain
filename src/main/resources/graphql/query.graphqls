@@ -1,0 +1,7 @@
+type Query {
+    positions: [TrainPosition]
+}
+
+type Train {
+    name: String
+}

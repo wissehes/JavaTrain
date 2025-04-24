@@ -1,0 +1,15 @@
+type TrainPosition {
+    trainNumber: String
+    materialNumber: String
+    sequenceNumber: Int
+
+    longitude: Float
+    latitude: Float
+    elevation: Float
+    speed: Float
+
+    locationDate: String
+    source: String
+
+    id: ID
+}
