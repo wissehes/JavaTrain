@@ -12,7 +12,7 @@ The departure boards in particular use the InfoPlus Dynamische Vertrek Staat top
 
 After subscribing to the `/RIG/InfoPlusDVSInterface4` topic, JavaTrain receives the InfoPlus messages in XML format.
 It then converts those to Java classes and stores them in memory.
-Thankfully, these messages are documented really well, see the [recources](./docs/Resources.md) file.
+Thankfully, these messages are documented really well, see the [resources](./docs/Resources.md) file.
 
 ## Running
 
