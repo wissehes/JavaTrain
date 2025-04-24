@@ -1,5 +1,6 @@
 package nl.wissehes.javatrain;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.zeromq.SocketType;
@@ -9,7 +10,8 @@ import org.zeromq.ZMQ;
 @Configuration
 public class ZmqConfig {
 
-    private static final String ZMQ_SUBSCRIBER_ADDRESS = "tcp://pubsub.besteffort.ndovloket.nl:7664";
+    @Value("${infoplus.endpoint}")
+    private String ZMQ_SUBSCRIBER_ADDRESS;
 
     /** Departures */
     public static final String DVS_TOPIC = "/RIG/InfoPlusDVSInterface4";
