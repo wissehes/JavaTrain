@@ -23,10 +23,10 @@ public final class DataStore {
     @Value("${app.datastore.store-raw-messages}")
     private boolean shouldStoreRaw;
 
-    private final List<Departure> departures = new LinkedList<>();
+    private final HashMap<String, Departure> departures = new HashMap<>();
     private final List<String> rawDepartures = new LinkedList<>();
 
-    private final List<Journey> journeys = new LinkedList<>();
+    private final HashMap<String, Journey> journeys = new HashMap<>();
     private final List<String> rawJourneys = new LinkedList<>();
 
     private final HashMap<String, TrainPosition> positions = new HashMap<>();
@@ -39,7 +39,6 @@ public final class DataStore {
 
     /**
      * Add a departure to the data store
-     * @param message
      */
     public void addDeparture(String message) {
         if (shouldStoreRaw) {
@@ -50,42 +49,31 @@ public final class DataStore {
         Departure mapped = new DepartureMapper(departureRoot).mapDeparture();
         Station station = mapped.forStation;
 
-        // Remove any existing items with the same ID
-        departures.removeIf(d ->
-                d.getId().equals(mapped.getId()) ||
-                        d.trainStatus.equals(TrainStatus.DEPARTED)
-        );
+        departures.put(mapped.getId(), mapped);
 
-        // Add the station
+        // Save the station
         if(!stations.containsKey(station.code)) {
             stations.put(station.code, station);
         }
-
-        // Add the departure
-        departures.add(mapped);
     }
 
     /**
      * Add a journey to the data store
-     * @param message
      */
     public void addJourney(String message) {
+        if(shouldStoreRaw) {
+            rawJourneys.add(message);
+        }
 
         JourneyDocument journeyRoot = JourneyParser.parse(message);
         Journey mapped = new JourneyMapper(journeyRoot).mapJourney();
 
-        // Remove any existing items with the same ID
-        journeys.removeIf(j -> j.id.equals(mapped.id));
 
-        journeys.add(mapped);
-        if(shouldStoreRaw) {
-            rawJourneys.add(message);
-        }
+        journeys.put(mapped.id, mapped);
     }
 
     /**
      * Add the received positions to the map
-     * @param message
      */
     public void addPosition(String message) {
         if(shouldStoreRaw) {
@@ -103,14 +91,17 @@ public final class DataStore {
      * Get the departures
      */
     public List<Departure> getDepartures() {
-        return departures;
+        return new ArrayList<>(departures.values())
+                .stream()
+                .filter(d -> d.trainStatus.equals(TrainStatus.DEPARTED))
+                .toList();
     }
 
     /**
      * Get the journeys
      */
     public List<Journey> getJourneys() {
-        return journeys;
+        return new ArrayList<>(journeys.values());
     }
 
     /**
