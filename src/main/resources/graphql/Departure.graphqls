@@ -4,13 +4,13 @@ type Departure {
     serviceName: String
     lineName: String
 
-    plannedDestination: [Station]
-    actualDestination: [Station]
+    plannedDestination: [Station!]
+    actualDestination: [Station!]
     destinationDisplay: String
 
-    plannedViaStations: [Station]
-    actualViaStations: [Station]
-    wings: [TrainWing]
+    plannedViaStations: [Station!]
+    actualViaStations: [Station!]
+    wings: [TrainWing!]
 
     serviceNumber: String!
     serviceType: String!
@@ -46,7 +46,7 @@ type TrainWing {
     actualDestination: Station
     platform: String
     actualPlatform: String
-    materialParts: [MaterialPart]
+    materialParts: [MaterialPart!]
 }
 
 type MaterialPart {
