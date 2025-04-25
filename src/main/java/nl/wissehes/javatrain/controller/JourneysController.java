@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/journeys")
@@ -33,9 +34,7 @@ public class JourneysController {
     @Operation(summary = "Get a specific journey by its code")
     public Journey getJourney(@PathVariable String code) {
 
-        return dataStore.getJourneys().stream()
-                .filter(j -> j.id.equals(code))
-                .findFirst()
+        return Optional.ofNullable(dataStore.getJourney(code))
                 .orElseThrow(() -> new JourneyNotFoundException("Journey not found"));
     }
 

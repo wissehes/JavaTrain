@@ -7,7 +7,7 @@ import java.util.List;
 
 public class Journey {
 
-    public String id;
+    public String serviceNumber;
     public String date;
     public Trein.TreinSoort type;
     public String operator;
@@ -20,4 +20,8 @@ public class Journey {
     public boolean supplementRequired;
     public boolean specialTicketRequired;
     public boolean includeInJourneyPlanner;
+
+    public String getId() {
+        return serviceNumber + "-" + date;
+    }
 }

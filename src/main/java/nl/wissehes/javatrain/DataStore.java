@@ -15,6 +15,7 @@ import nl.wissehes.javatrain.parser.JourneyParser;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 @Component
@@ -68,7 +69,7 @@ public final class DataStore {
         JourneyDocument journeyRoot = JourneyParser.parse(message);
         Journey mapped = new JourneyMapper(journeyRoot).mapJourney();
 
-        journeys.put(mapped.id, mapped);
+        journeys.put(mapped.getId(), mapped);
     }
 
     /**
@@ -101,6 +102,12 @@ public final class DataStore {
      */
     public List<Journey> getJourneys() {
         return new ArrayList<>(journeys.values());
+    }
+
+    public Journey getJourney(String id) {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String date = sdf.format(new Date());
+        return journeys.get(id + "-" + date);
     }
 
     /**

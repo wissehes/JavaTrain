@@ -29,7 +29,7 @@ public class JourneyMapper {
         ReisInformatieProductRitInfo reisInformatieProduct = data.reisInformatieProduct;
         RitInfo ritInfo = reisInformatieProduct.ritInfo;
 
-        journey.id = reisInformatieProduct.ritInfo.nummer;
+        journey.serviceNumber = reisInformatieProduct.ritInfo.nummer;
         journey.date = reisInformatieProduct.ritInfo.datum;
         journey.type = reisInformatieProduct.ritInfo.soort;
         journey.operator = reisInformatieProduct.ritInfo.vervoerder;

@@ -1,5 +1,7 @@
 type Journey {
     id: ID!
+
+    serviceNumber: String!
     date: String!
     type: TrainType
     operator: String!
