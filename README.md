@@ -1,6 +1,6 @@
 # JavaTrain
 
-A server application that transforms the realtime data streams provided by the NDOV into a usable REST API.
+A server application that transforms the realtime data streams provided by the NDOV into a usable REST API and GraphQL API.
 
 This project is inspired by the [GoTrain](https://github.com/rijdendetreinen/gotrain) project.
 
