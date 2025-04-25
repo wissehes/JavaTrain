@@ -4,6 +4,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import nl.wissehes.javatrain.DataStore;
+import nl.wissehes.javatrain.exception.StationNotFoundException;
 import nl.wissehes.javatrain.model.departure.Departure;
 import nl.wissehes.javatrain.model.response.DeparturesResponse;
 import org.springframework.graphql.data.method.annotation.Argument;
@@ -31,7 +32,7 @@ public class DeparturesController {
             @Parameter(name = "station", description = "The station code, for example 'vtn' or 'ut'", required = true)
     })
     public DeparturesResponse getDepartures(@PathVariable String station) {
-        var stationData = dataStore.getStation(station).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Station not found"));
+        var stationData = dataStore.getStation(station).orElseThrow(() -> new StationNotFoundException("Station not found"));
 
         var departures = dataStore.getDepartures()
                 .stream()

@@ -3,6 +3,7 @@ package nl.wissehes.javatrain.controller;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import nl.wissehes.javatrain.DataStore;
+import nl.wissehes.javatrain.exception.JourneyNotFoundException;
 import nl.wissehes.javatrain.model.journey.Journey;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
@@ -35,7 +36,7 @@ public class JourneysController {
         return dataStore.getJourneys().stream()
                 .filter(j -> j.id.equals(code))
                 .findFirst()
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Journey not found"));
+                .orElseThrow(() -> new JourneyNotFoundException("Journey not found"));
     }
 
     @GetMapping(value = "/raw/all", produces = "application/xml")
