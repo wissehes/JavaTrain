@@ -1,0 +1,62 @@
+trains:
+  ICNG25-5:
+    seats: 258
+    folding_seats: 18
+    bike_spaces: 12
+  ICNG25-8:
+    seats: 417
+    folding_seats: 24
+    bike_spaces: 16
+  ICNG25B-8:
+    seats: 413
+    folding_seats: 18
+    bike_spaces: 12
+
+  VIRM-4:
+    seats: 410
+    folding_seats: 16
+  VIRM-6:
+    seats: 600
+    folding_seats: 26
+
+  DDZ-4:
+    seats: 373
+    folding_seats: 37
+  DDZ-6:
+    seats: 607
+    folding_seats: 62
+
+  ICM-3:
+    seats: 226
+    folding_seats: 28
+  ICM-4:
+    seats: 300
+    folding_seats: 30
+
+  SLT-4:
+    seats: 204
+    folding_seats: 22
+    bike_spaces: 2
+  SLT-6:
+    seats: 330
+    folding_seats: 48
+    bike_spaces: 2
+
+  SNG-3:
+    seats: 148
+    folding_seats: 4
+    bike_spaces: 2
+  SNG-4:
+    seats: 200
+    folding_seats:  6
+    bike_spaces: 2
+
+  FLIRT FFF-3:
+    seats: 158
+    folding_seats: 4
+    bike_spaces: 2
+  FLIRT FFF-4:
+    seats: 214
+    folding_seats: 6
+    bike_spaces: 2
+
