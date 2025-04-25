@@ -68,7 +68,6 @@ public final class DataStore {
         JourneyDocument journeyRoot = JourneyParser.parse(message);
         Journey mapped = new JourneyMapper(journeyRoot).mapJourney();
 
-
         journeys.put(mapped.id, mapped);
     }
 

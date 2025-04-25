@@ -10,6 +10,9 @@ public class Stop {
     public Station station;
     public Station recognizableDestination;
 
+    public boolean stopStatus;
+    public boolean doNotBoard;
+
     public boolean isStationAccessible;
     public boolean isAssistanceAvailable;
 

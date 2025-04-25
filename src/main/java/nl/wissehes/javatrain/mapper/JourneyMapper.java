@@ -52,7 +52,7 @@ public class JourneyMapper {
 
         part.serviceNumber = deel.deelNummer;
         part.stops = deel.stops.stream()
-                .filter(i -> i.stopStatus.stream().anyMatch(s -> s.stopStatus() == NSBoolean.J))
+//                .filter(i -> i.stopStatus.stream().anyMatch(s -> s.stopStatus() == NSBoolean.J))
                 .map(this::mapJourneyPartStop)
                 .toList();
 //        part.changes = deel.wijzigingen.stream().map(ScheduleChange::new).toList();
@@ -66,6 +66,14 @@ public class JourneyMapper {
         if(station.herkenbareBestemming != null) {
             stop.recognizableDestination = new Station(station.herkenbareBestemming.station());
         }
+
+        stop.stopStatus = station.stopStatus
+                .stream()
+                .filter(i -> i.infoStatus() == InfoStatus.ACTUEEL)
+                .map(i -> i.stopStatus().toBoolean())
+                .findFirst()
+                .orElse(false);
+        stop.doNotBoard = station.nietInstappen != null && station.nietInstappen.toBoolean();
 
         if(station.stationToegankelijk != null) {
             stop.isStationAccessible = station.stationToegankelijk.toBoolean();

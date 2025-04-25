@@ -16,9 +16,4 @@ public class Movement {
     public long exactDelay;
     /** Delay normalized to minutes rounded to the closest 5 */
     public long normalizedDelay;
-
-    public enum Type {
-        ARRIVAL,
-        DEPARTURE
-    }
 }
