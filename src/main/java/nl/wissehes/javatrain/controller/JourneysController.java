@@ -4,6 +4,8 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import nl.wissehes.javatrain.DataStore;
 import nl.wissehes.javatrain.model.journey.Journey;
+import org.springframework.graphql.data.method.annotation.Argument;
+import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
@@ -50,5 +52,10 @@ public class JourneysController {
         }
 
         return dataStore.getRawJourneys().getLast();
+    }
+
+    @QueryMapping
+    public Journey journey(@Argument String id) {
+        return this.getJourney(id);
     }
 }

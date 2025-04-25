@@ -1,0 +1,59 @@
+type Journey {
+    id: ID!
+    date: String!
+    type: TrainType
+    operator: String!
+    lineNumber: String
+
+    parts: [JourneyPart!]!
+
+    reservationRequired: Boolean!
+    supplementRequired: Boolean!
+    specialTicketRequired: Boolean!
+    includeInJourneyPlanner: Boolean!
+}
+
+type JourneyPart {
+    serviceNumber: ID!
+    stops: [Stop!]!
+}
+
+type Stop {
+    station: Station!
+    recognizableDestination: Station
+    plannedDestination: Station!
+    actualDestination: Station!
+
+    stopStatus: Boolean!
+    doNotBoard: Boolean!
+
+    isStationAccessible: Boolean!
+    isAssistanceAvailable: Boolean!
+
+    arrival: StopMovement
+    departure: StopMovement
+}
+
+type StopMovement {
+    plannedTime: String!
+    actualTime: String!
+
+    plannedPlatform: String
+    actualPlatform: String
+
+    cancelled: Boolean!
+
+    """
+    Delay in seconds
+    """
+    exactDelay: Int
+    """
+    Delay normalized to minutes rounded to the closest 5
+    """
+    normalizedDelay: Int
+}
+
+type TrainType {
+    code: String
+    value: String
+}
