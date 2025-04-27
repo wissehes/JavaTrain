@@ -93,7 +93,7 @@ public final class DataStore {
     public List<Departure> getDepartures() {
         return new ArrayList<>(departures.values())
                 .stream()
-                .filter(d -> d.trainStatus.equals(TrainStatus.DEPARTED))
+                .filter(d -> !d.trainStatus.equals(TrainStatus.DEPARTED))
                 .toList();
     }
 

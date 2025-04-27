@@ -3,6 +3,7 @@ type Departure {
     journeyDate: String!
     serviceName: String
     lineName: String
+    isCancelled: Boolean!
 
     plannedDestination: [Station!]
     actualDestination: [Station!]
