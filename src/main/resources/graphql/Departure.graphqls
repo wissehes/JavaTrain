@@ -1,5 +1,6 @@
 type Departure {
     journeyId: String!
+    baseJourneyId: String!
     journeyDate: String!
     serviceName: String
     lineName: String
@@ -13,7 +14,6 @@ type Departure {
     actualViaStations: [Station!]
     wings: [TrainWing!]
 
-    serviceNumber: String!
     serviceType: String!
     serviceTypeCode: String!
 
