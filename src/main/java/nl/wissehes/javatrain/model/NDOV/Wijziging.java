@@ -17,4 +17,7 @@ public class Wijziging {
 
     @JacksonXmlProperty(localName = "PresentatieWijziging")
     public LocalizedUiting presentatieWijziging;
+
+    @JacksonXmlProperty(localName = "WijzigingStation")
+    public Station station;
 }
