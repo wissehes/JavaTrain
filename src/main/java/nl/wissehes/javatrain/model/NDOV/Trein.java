@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import nl.wissehes.javatrain.model.NDOV.DVS.InstapTip;
+import nl.wissehes.javatrain.model.NDOV.DVS.ReisTip;
 
 import java.util.Date;
 import java.util.List;
