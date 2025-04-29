@@ -1,11 +1,7 @@
 package nl.wissehes.javatrain.mapper;
 
-import nl.wissehes.javatrain.model.NDOV.DVS.DepartureDocument;
-import nl.wissehes.javatrain.model.NDOV.DVS.DynamischeVertrekStaat;
-import nl.wissehes.javatrain.model.NDOV.InfoStatus;
-import nl.wissehes.javatrain.model.NDOV.Trein;
-import nl.wissehes.javatrain.model.NDOV.TreinSpoor;
-import nl.wissehes.javatrain.model.NDOV.TreinVleugel;
+import nl.wissehes.javatrain.model.NDOV.*;
+import nl.wissehes.javatrain.model.NDOV.DVS.*;
 import nl.wissehes.javatrain.model.departure.Departure;
 import nl.wissehes.javatrain.model.departure.TrainWing;
 import nl.wissehes.javatrain.model.shared.ScheduleChange;
@@ -16,6 +12,8 @@ import nl.wissehes.javatrain.model.shared.Station;
 import java.time.Duration;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
+import java.util.stream.Stream;
 
 public class DepartureMapper {
 
@@ -77,6 +75,7 @@ public class DepartureMapper {
         departure.trainStatus = TrainStatus.fromCode(trein.treinStatus);
 
         departure.wings = mapWings(trein.treinVleugel);
+        departure.tips = mapTips(Stream.concat(trein.instapTips.stream(), trein.reisTips.stream()).toList());
 
         return departure;
     }
@@ -198,5 +197,13 @@ public class DepartureMapper {
                             materieelDeel.wijzigingen.stream().map(ScheduleChange::new).toList()
                     )).toList()
             )).toList();
+    }
+
+    private List<String> mapTips(List<DvsTip> tips) {
+        return tips
+                .stream()
+                .map(i -> i.getPresentatie().getForLanguage(LocalizedUiting.Language.nl).orElse(null))
+                .filter(Objects::nonNull)
+                .toList();
     }
 }

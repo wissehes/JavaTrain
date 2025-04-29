@@ -46,8 +46,8 @@ public class Departure {
     public SpecialFlags specialFlags;
     public TrainStatus trainStatus;
 
+    public List<String> tips;
     public List<ScheduleChange> scheduleChanges;
-
     public List<TrainWing> wings;
 
     public Boolean getIsCancelled() {

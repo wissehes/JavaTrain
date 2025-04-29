@@ -12,6 +12,7 @@ type Departure {
     plannedViaStations: [Station!]
     actualViaStations: [Station!]
     wings: [TrainWing!]
+    tips: [String!]!
 
     serviceNumber: String!
     serviceType: String!
