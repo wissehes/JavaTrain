@@ -14,7 +14,7 @@ public record TrainWing(
 ) {
 
     public record MaterialPart(
-            String id,
+            String materialNumber,
             Station destination,
             Station actualDestination,
             String type,

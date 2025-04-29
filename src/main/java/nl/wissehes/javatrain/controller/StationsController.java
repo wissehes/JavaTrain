@@ -2,6 +2,7 @@ package nl.wissehes.javatrain.controller;
 
 import io.swagger.v3.oas.annotations.tags.Tag;
 import nl.wissehes.javatrain.DataStore;
+import nl.wissehes.javatrain.exception.StationNotFoundException;
 import nl.wissehes.javatrain.model.shared.Station;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
@@ -38,7 +39,7 @@ public class StationsController {
 
     @GetMapping(value = "/code/{code}")
     public Station getStationByCode(@PathVariable String code) {
-        return dataStore.getStation(code).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Station not found"));
+        return dataStore.getStation(code).orElseThrow(() -> new StationNotFoundException("Station not found"));
     }
 
     @QueryMapping
@@ -49,7 +50,7 @@ public class StationsController {
     }
 
     @QueryMapping
-    public Station stationByCode(@Argument String code) {
+    public Station station(@Argument String code) {
         return this.getStationByCode(code);
     }
 

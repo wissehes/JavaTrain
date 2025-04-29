@@ -60,7 +60,7 @@ type SpecialFlags {
 }
 
 type MaterialPart {
-    id: ID
+    materialNumber: ID
     destination: Station!
     actualDestination: Station
     type: String

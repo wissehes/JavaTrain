@@ -8,6 +8,7 @@ import nl.wissehes.javatrain.model.shared.ScheduleChange;
 import nl.wissehes.javatrain.model.departure.SpecialFlags;
 import nl.wissehes.javatrain.model.departure.TrainStatus;
 import nl.wissehes.javatrain.model.shared.Station;
+import org.apache.commons.lang3.StringUtils;
 
 import java.time.Duration;
 import java.time.OffsetDateTime;
@@ -188,7 +189,7 @@ public class DepartureMapper {
                     getPlatform(treinVleugel.vertrekSpoor, InfoStatus.GEPLAND),
                     getPlatform(treinVleugel.vertrekSpoor, InfoStatus.ACTUEEL),
                     treinVleugel.materieelDelen.stream().map(materieelDeel -> new TrainWing.MaterialPart(
-                            materieelDeel.materieelNummer,
+                            formatMaterialNumber(materieelDeel.materieelNummer),
                             getDestination(materieelDeel.eindBestemming, InfoStatus.GEPLAND),
                             getDestination(materieelDeel.eindBestemming, InfoStatus.ACTUEEL),
                             materieelDeel.materieelSoort + "-" + materieelDeel.materieelAanduiding,
@@ -198,6 +199,25 @@ public class DepartureMapper {
                             materieelDeel.wijzigingen.stream().map(ScheduleChange::new).toList()
                     )).toList()
             )).toList();
+    }
+
+    /**
+     * Map the materieel nummer to a proper string, for example:
+     * <p>
+     * - 000000-02652-0 -> 26520
+     * - 000000-16476-0 -> 164760
+     * @param materieelNummer
+     * @return
+     */
+    private String formatMaterialNumber(String materieelNummer) {
+        if (materieelNummer == null || materieelNummer.isEmpty()) {
+            return null;
+        }
+
+        var strippedZeros = StringUtils.strip(materieelNummer, "0");
+        var strippedDashes = StringUtils.strip(strippedZeros, "-");
+
+        return StringUtils.stripStart(strippedDashes, "0");
     }
 
     private List<String> mapTips(List<DvsTip> tips) {

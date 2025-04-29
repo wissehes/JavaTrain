@@ -3,8 +3,8 @@ type Query {
     departures(station: String!): [Departure!]
 
     stations: [Station]
+    station(code: String!): Station
     stationSearch(query: String!): [Station!]
-    stationByCode(code: String!): Station
 
     journey(id: String!): Journey!
 }
