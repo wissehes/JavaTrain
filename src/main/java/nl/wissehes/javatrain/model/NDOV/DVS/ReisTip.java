@@ -5,7 +5,7 @@ import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import nl.wissehes.javatrain.model.NDOV.LocalizedUiting;
 import nl.wissehes.javatrain.model.NDOV.Station;
-import nl.wissehes.javatrain.util.StringUtils;
+import nl.wissehes.javatrain.util.StringUtilities;
 
 import java.util.List;
 import java.util.Optional;
@@ -31,7 +31,7 @@ public class ReisTip implements DvsTip {
                     .stream()
                     .map(s -> s.langeNaam)
                     .toList();
-            formattedStations = StringUtils.naturallyJoinStrings(names);
+            formattedStations = StringUtilities.naturallyJoinStrings(names);
         }
 
         String data = switch (this.reisTipType) {

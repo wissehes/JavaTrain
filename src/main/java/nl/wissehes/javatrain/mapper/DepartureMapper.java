@@ -8,11 +8,10 @@ import nl.wissehes.javatrain.model.shared.ScheduleChange;
 import nl.wissehes.javatrain.model.departure.SpecialFlags;
 import nl.wissehes.javatrain.model.departure.TrainStatus;
 import nl.wissehes.javatrain.model.shared.Station;
-import org.apache.commons.lang3.StringUtils;
+import nl.wissehes.javatrain.util.StringUtilities;
 
 import java.time.Duration;
 import java.time.OffsetDateTime;
-import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Stream;
@@ -188,7 +187,7 @@ public class DepartureMapper {
                     getPlatform(treinVleugel.vertrekSpoor, InfoStatus.GEPLAND),
                     getPlatform(treinVleugel.vertrekSpoor, InfoStatus.ACTUEEL),
                     treinVleugel.materieelDelen.stream().map(materieelDeel -> new TrainWing.MaterialPart(
-                            formatMaterialNumber(materieelDeel.materieelNummer),
+                            StringUtilities.formatMaterialNumber(materieelDeel.materieelNummer),
                             getDestination(materieelDeel.eindBestemming, InfoStatus.GEPLAND),
                             getDestination(materieelDeel.eindBestemming, InfoStatus.ACTUEEL),
                             materieelDeel.materieelSoort + "-" + materieelDeel.materieelAanduiding,
@@ -198,25 +197,6 @@ public class DepartureMapper {
                             materieelDeel.wijzigingen.stream().map(ScheduleChange::new).toList()
                     )).toList()
             )).toList();
-    }
-
-    /**
-     * Map the materieel nummer to a proper string, for example:
-     * <p>
-     * - 000000-02652-0 -> 26520
-     * - 000000-16476-0 -> 164760
-     * @param materieelNummer
-     * @return
-     */
-    private String formatMaterialNumber(String materieelNummer) {
-        if (materieelNummer == null || materieelNummer.isEmpty()) {
-            return null;
-        }
-
-        var strippedZeros = StringUtils.strip(materieelNummer, "0");
-        var strippedDashes = StringUtils.strip(strippedZeros, "-");
-
-        return StringUtils.stripStart(strippedDashes, "0");
     }
 
     private List<String> mapTips(List<DvsTip> tips) {
