@@ -44,9 +44,16 @@ public class DeparturesController {
     }
 
     @GetMapping(value = "/raw", produces = "application/xml")
-    public String getReceivedMessagesRaw(@RequestParam(required = false) Integer index) {
+    public String getReceivedMessagesRaw(
+            @RequestParam(required = false) Integer index,
+            @RequestParam(required = false, defaultValue = "") String search
+    ) {
         if (index != null) {
-            return dataStore.getRawDepartures().get(index);
+            return dataStore.getRawDepartures()
+                    .stream()
+                    .filter(i -> i.contains(search))
+                    .toList()
+                    .get(index);
         }
 
         return dataStore.getRawDepartures().getLast();
