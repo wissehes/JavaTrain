@@ -10,7 +10,7 @@ import nl.wissehes.javatrain.model.NDOV.TreinSpoor;
 import java.util.Date;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class InstapTip {
+public class InstapTip implements DvsTip {
 
     @JacksonXmlProperty(localName = "InstapTipTreinSoort")
     public Trein.TreinSoort instapTipTreinSoort;
@@ -30,4 +30,8 @@ public class InstapTip {
     @JacksonXmlProperty(localName = "PresentatieInstapTip")
     public LocalizedUiting presentatieInstapTip;
 
+    @Override
+    public LocalizedUiting getPresentatie() {
+        return presentatieInstapTip;
+    }
 }
