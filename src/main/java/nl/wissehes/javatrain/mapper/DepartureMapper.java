@@ -202,7 +202,7 @@ public class DepartureMapper {
     private List<String> mapTips(List<DvsTip> tips) {
         return tips
                 .stream()
-                .map(i -> i.getPresentatie().getForLanguage(LocalizedUiting.Language.nl).orElse(null))
+                .map(i -> i.getPresentatie().orElse(null))
                 .filter(Objects::nonNull)
                 .toList();
     }

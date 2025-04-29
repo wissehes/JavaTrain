@@ -8,6 +8,7 @@ import nl.wissehes.javatrain.model.NDOV.Trein;
 import nl.wissehes.javatrain.model.NDOV.TreinSpoor;
 
 import java.util.Date;
+import java.util.Optional;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class InstapTip implements DvsTip {
@@ -31,7 +32,7 @@ public class InstapTip implements DvsTip {
     public LocalizedUiting presentatieInstapTip;
 
     @Override
-    public LocalizedUiting getPresentatie() {
-        return presentatieInstapTip;
+    public Optional<String> getPresentatie() {
+        return presentatieInstapTip.getForLanguage(LocalizedUiting.Language.nl);
     }
 }

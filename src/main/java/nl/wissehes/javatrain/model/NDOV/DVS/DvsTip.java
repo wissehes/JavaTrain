@@ -1,9 +1,9 @@
 package nl.wissehes.javatrain.model.NDOV.DVS;
 
-import nl.wissehes.javatrain.model.NDOV.LocalizedUiting;
+import java.util.Optional;
 
 public interface DvsTip {
 
-    public LocalizedUiting getPresentatie();
+    public Optional<String> getPresentatie();
 
 }
