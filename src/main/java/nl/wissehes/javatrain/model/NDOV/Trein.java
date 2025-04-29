@@ -6,6 +6,7 @@ import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import nl.wissehes.javatrain.model.NDOV.DVS.InstapTip;
 import nl.wissehes.javatrain.model.NDOV.DVS.ReisTip;
 
+import java.time.OffsetDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -117,16 +118,19 @@ public class Trein {
         public List<Station> stations;
     }
 
+    @JsonIgnoreProperties(ignoreUnknown = true)
     public record VertrekTijd(
             @JacksonXmlProperty(localName = "InfoStatus", isAttribute = true) InfoStatus infoStatus,
-            @JacksonXmlProperty(localName = "") Date date
+            @JacksonXmlProperty(localName = "") OffsetDateTime date
     ){}
-
+    
+    @JsonIgnoreProperties(ignoreUnknown = true)
     public static class Eindbestemming extends Station {
         @JacksonXmlProperty(localName = "InfoStatus", isAttribute = true)
         public InfoStatus InfoStatus;
     }
 
+    @JsonIgnoreProperties(ignoreUnknown = true)
     public record TreinSoort(
             @JacksonXmlProperty(localName = "Code", isAttribute = true) String code,
             @JacksonXmlProperty(localName = "") String value

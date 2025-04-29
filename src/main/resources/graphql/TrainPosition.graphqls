@@ -8,7 +8,7 @@ type TrainPosition {
     elevation: Float
     speed: Float
 
-    locationDate: String
+    locationDate: DateTime
     source: String
 
     id: ID

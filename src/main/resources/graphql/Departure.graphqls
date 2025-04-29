@@ -12,7 +12,6 @@ type Departure {
     plannedViaStations: [Station!]
     actualViaStations: [Station!]
     wings: [TrainWing!]
-    tips: [String!]!
 
     serviceNumber: String!
     serviceType: String!
@@ -20,9 +19,11 @@ type Departure {
 
     operator: String!
     trainStatus: TrainStatus
+    specialFlags: SpecialFlags!
+    tips: [String!]!
 
-    departureTime: String!
-    actualDepartureTime: String!
+    departureTime: DateTime!
+    actualDepartureTime: DateTime!
 
     """
     Delay in seconds
@@ -39,7 +40,6 @@ type Departure {
     departureDirection: String
 
     # TODO:
-#    public SpecialFlags specialFlags;
 #    public List<ScheduleChange> scheduleChanges;
 }
 
@@ -49,6 +49,14 @@ type TrainWing {
     platform: String
     actualPlatform: String
     materialParts: [MaterialPart!]
+}
+
+type SpecialFlags {
+    reservationRequired: Boolean!
+    supplementRequired: Boolean!
+    specialTicketRequired: Boolean!
+    rearTrainSetRemains: Boolean!
+    doNotBoard: Boolean!
 }
 
 type MaterialPart {

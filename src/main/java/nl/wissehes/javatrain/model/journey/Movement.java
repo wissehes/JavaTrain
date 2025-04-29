@@ -1,14 +1,14 @@
 package nl.wissehes.javatrain.model.journey;
 
-import java.util.Date;
+import java.time.OffsetDateTime;
 
 /**
  * Movement information
  * Represents an arrival or departure
  */
 public class Movement {
-    public Date plannedTime;
-    public Date actualTime;
+    public OffsetDateTime plannedTime;
+    public OffsetDateTime actualTime;
     public String plannedPlatform;
     public String actualPlatform;
     public boolean cancelled;

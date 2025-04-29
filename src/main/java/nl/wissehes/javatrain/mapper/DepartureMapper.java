@@ -10,6 +10,7 @@ import nl.wissehes.javatrain.model.departure.TrainStatus;
 import nl.wissehes.javatrain.model.shared.Station;
 
 import java.time.Duration;
+import java.time.OffsetDateTime;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
@@ -83,7 +84,7 @@ public class DepartureMapper {
     /**
      * Get the departure time for a specific status
      */
-    private Date getDepartureTime(InfoStatus status) {
+    private OffsetDateTime getDepartureTime(InfoStatus status) {
         List<Trein.VertrekTijd> vertrekTijden = getTrein().vertrekTijd;
 
         return vertrekTijden.stream()

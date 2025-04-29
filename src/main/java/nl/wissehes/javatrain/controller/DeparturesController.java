@@ -13,6 +13,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.time.OffsetDateTime;
 import java.util.Comparator;
 import java.util.List;
 
@@ -36,7 +37,7 @@ public class DeparturesController {
 
         var departures = dataStore.getDepartures()
                 .stream()
-                .filter(d -> d.forStation.equals(stationData) && (d.departureTime.getTime() - System.currentTimeMillis()) > 0)
+                .filter(d -> d.forStation.equals(stationData) && d.departureTime.isAfter(OffsetDateTime.now()))
                 .sorted(Comparator.comparing(d -> d.departureTime))
                 .toList();
 

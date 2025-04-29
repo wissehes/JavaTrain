@@ -3,6 +3,7 @@ package nl.wissehes.javatrain.model.NDOV.POS;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 
+import java.time.OffsetDateTime;
 import java.util.Date;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -15,7 +16,7 @@ public class TreinMaterieelDeel {
     public Integer volgNummer;
 
     @JacksonXmlProperty(localName = "GpsDatumTijd")
-    public Date gpsDatumTijd;
+    public OffsetDateTime gpsDatumTijd;
 
     @JacksonXmlProperty(localName = "Bron")
     public String bron;

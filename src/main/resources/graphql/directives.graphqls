@@ -1,0 +1,6 @@
+directive @specifiedBy(url: String!) on SCALAR
+
+scalar DateTime
+@specifiedBy(url:
+"https://scalars.graphql.org/andimarek/date-time.html"
+)

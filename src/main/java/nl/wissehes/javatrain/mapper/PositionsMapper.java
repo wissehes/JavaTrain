@@ -1,6 +1,8 @@
 package nl.wissehes.javatrain.mapper;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import nl.wissehes.javatrain.model.NDOV.DVS.DepartureDocument;
 import nl.wissehes.javatrain.model.NDOV.POS.PositionDocument;
 import nl.wissehes.javatrain.model.NDOV.POS.TreinLocation;
@@ -18,8 +20,8 @@ public class PositionsMapper {
     }
 
     public PositionsMapper(String xmlMessage) {
-        XmlMapper mapper = new XmlMapper();
-
+        ObjectMapper mapper = new XmlMapper().registerModule(new JavaTimeModule());
+        
         try {
             this.data = mapper.readValue(xmlMessage, PositionDocument.class);
         } catch (Exception e) {
