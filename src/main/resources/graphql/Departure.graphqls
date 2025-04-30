@@ -50,7 +50,7 @@ type TrainWing {
     actualDestination: Station
     platform: String
     actualPlatform: String
-    materialParts: [MaterialPart!]
+    materialParts: [DepartureMaterialPart!]
 }
 
 type SpecialFlags {
@@ -59,19 +59,6 @@ type SpecialFlags {
     specialTicketRequired: Boolean!
     rearTrainSetRemains: Boolean!
     doNotBoard: Boolean!
-}
-
-type MaterialPart {
-    materialNumber: ID
-    destination: Station!
-    actualDestination: Station
-    type: String
-    """
-    Length in meters
-    """
-    length: Int
-    departurePosition: Int
-    departureOrder: Int
 }
 
 enum TrainStatus {

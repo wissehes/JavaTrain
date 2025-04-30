@@ -1,0 +1,41 @@
+interface MaterialPart {
+    materialNumber: ID
+    plannedDestination: Station!
+    actualDestination: Station
+    type: String
+    """
+    Length in meters
+    """
+    length: Int
+    departurePosition: Int
+    departureOrder: Int
+}
+
+type DepartureMaterialPart implements MaterialPart {
+    materialNumber: ID
+    plannedDestination: Station!
+    actualDestination: Station
+    type: String
+    """
+    Length in meters
+    """
+    length: Int
+    departurePosition: Int
+    departureOrder: Int
+}
+
+type JourneyMaterialPart {
+    materialNumber: ID
+    plannedDestination: Station!
+    actualDestination: Station
+    type: String
+    """
+    Length in meters
+    """
+    length: Int
+    departurePosition: Int
+    departureOrder: Int
+
+    accessible: Boolean!
+    staysBehind: Boolean!
+}

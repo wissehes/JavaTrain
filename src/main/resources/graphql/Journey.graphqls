@@ -36,6 +36,8 @@ type StoppingStop {
     isStationAccessible: Boolean!
     isAssistanceAvailable: Boolean!
 
+    materialParts: [JourneyMaterialPart!]!
+
     arrival: StopMovement
     departure: StopMovement
 }
