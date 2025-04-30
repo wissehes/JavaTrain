@@ -4,6 +4,7 @@ import nl.wissehes.javatrain.model.NDOV.*;
 import nl.wissehes.javatrain.model.NDOV.DVS.*;
 import nl.wissehes.javatrain.model.departure.Departure;
 import nl.wissehes.javatrain.model.departure.TrainWing;
+import nl.wissehes.javatrain.model.shared.MaterialPart;
 import nl.wissehes.javatrain.model.shared.ScheduleChange;
 import nl.wissehes.javatrain.model.departure.SpecialFlags;
 import nl.wissehes.javatrain.model.departure.TrainStatus;
@@ -15,6 +16,8 @@ import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Stream;
+
+import static nl.wissehes.javatrain.mapper.Shared.getDestination;
 
 public class DepartureMapper {
 
@@ -105,18 +108,6 @@ public class DepartureMapper {
     }
 
     /**
-     * Get the destinations for a specific status
-     */
-    private Station getDestination(List<Trein.Eindbestemming> item, InfoStatus status) {
-        return item
-                .stream()
-                .filter(eindBestemming -> eindBestemming.InfoStatus == status)
-                .map(Station::new)
-                .toList()
-                .getFirst();
-    }
-
-    /**
      * Get the stations in between for a specific status
      */
     private List<Station> getViaStations(InfoStatus status) {
@@ -186,16 +177,7 @@ public class DepartureMapper {
                     getDestination(treinVleugel.eindBestemming, InfoStatus.ACTUEEL),
                     getPlatform(treinVleugel.vertrekSpoor, InfoStatus.GEPLAND),
                     getPlatform(treinVleugel.vertrekSpoor, InfoStatus.ACTUEEL),
-                    treinVleugel.materieelDelen.stream().map(materieelDeel -> new TrainWing.MaterialPart(
-                            StringUtilities.formatMaterialNumber(materieelDeel.materieelNummer),
-                            getDestination(materieelDeel.eindBestemming, InfoStatus.GEPLAND),
-                            getDestination(materieelDeel.eindBestemming, InfoStatus.ACTUEEL),
-                            materieelDeel.materieelSoort + "-" + materieelDeel.materieelAanduiding,
-                            materieelDeel.materieelLengte,
-                            materieelDeel.materieelDeelVertrekPositie,
-                            materieelDeel.materieelDeelVolgordeVertrek,
-                            materieelDeel.wijzigingen.stream().map(ScheduleChange::new).toList()
-                    )).toList()
+                    treinVleugel.materieelDelen.stream().map(MaterialPart::new).toList()
             )).toList();
     }
 

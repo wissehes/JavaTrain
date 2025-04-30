@@ -10,6 +10,8 @@ import nl.wissehes.javatrain.model.journey.Journey;
 import nl.wissehes.javatrain.model.journey.JourneyPart;
 import nl.wissehes.javatrain.model.journey.Movement;
 import nl.wissehes.javatrain.model.journey.Stop;
+import nl.wissehes.javatrain.model.shared.JourneyMaterialPart;
+import nl.wissehes.javatrain.model.shared.MaterialPart;
 import nl.wissehes.javatrain.model.shared.ScheduleChange;
 import nl.wissehes.javatrain.model.shared.Station;
 
@@ -44,6 +46,7 @@ public class JourneyMapper {
         journey.supplementRequired = reisInformatieProduct.ritInfo.toeslag.toBoolean();
         journey.specialTicketRequired = reisInformatieProduct.ritInfo.speciaalKaartje.toBoolean();
         journey.includeInJourneyPlanner = reisInformatieProduct.ritInfo.reisplanner.toBoolean();
+
         return journey;
     }
 
@@ -52,10 +55,11 @@ public class JourneyMapper {
 
         part.serviceNumber = deel.deelNummer;
         part.stops = deel.stops.stream()
-//                .filter(i -> i.stopStatus.stream().anyMatch(s -> s.stopStatus() == NSBoolean.J))
                 .map(this::mapJourneyPartStop)
                 .toList();
-//        part.changes = deel.wijzigingen.stream().map(ScheduleChange::new).toList();
+
+        part.changes = deel.wijzigingen.stream().map(ScheduleChange::new).toList();
+
         return part;
     }
 
@@ -104,8 +108,8 @@ public class JourneyMapper {
             stop.departure = mapMovement(station.vertrekTijd, station.treinVertrekSpoor, station.exacteVertrekVertraging, station.gedempteVertrekVertraging, station.wijzigingen);
         }
 
-        if(station.wijzigingen != null) {
-            stop.changes = station.wijzigingen.stream().map(ScheduleChange::new).toList();
+        if(station.materieelDelen != null && !station.materieelDelen.isEmpty()) {
+            stop.materialParts = station.materieelDelen.stream().map(JourneyMaterialPart::new).toList();
         }
 
         return stop;

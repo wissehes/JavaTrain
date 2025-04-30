@@ -1,5 +1,6 @@
 package nl.wissehes.javatrain.model.journey;
 
+import nl.wissehes.javatrain.model.shared.JourneyMaterialPart;
 import nl.wissehes.javatrain.model.shared.ScheduleChange;
 import nl.wissehes.javatrain.model.shared.Station;
 
@@ -18,6 +19,8 @@ public class Stop {
 
     public Station plannedDestination;
     public Station actualDestination;
+
+    public List<JourneyMaterialPart> materialParts;
 
     /** Arrival */
     public Movement arrival;
