@@ -1,6 +1,7 @@
 type Query {
     positions: [TrainPosition]
     departures(station: String!): [Departure!]
+    departure(id: String!): Departure!
 
     stations: [Station]
     station(code: String!): Station

@@ -69,4 +69,9 @@ public class DeparturesController {
     public List<Departure> departures(@Argument String station) {
         return this.getDepartures(station).departures;
     }
+
+    @QueryMapping
+    public Departure departure(@Argument String id) {
+        return dataStore.getDeparture(id);
+    }
 }

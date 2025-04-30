@@ -1,4 +1,5 @@
 type Departure {
+    id: ID!
     journeyId: String!
     baseJourneyId: String!
     journeyDate: String!
@@ -38,6 +39,8 @@ type Departure {
     plannedPlatform: String
     actualPlatform: String
     departureDirection: String
+
+    forStation: Station!
 
     # TODO:
 #    public List<ScheduleChange> scheduleChanges;
