@@ -46,9 +46,15 @@ public class JourneysController {
 
     @GetMapping(value = "/raw", produces = "application/xml")
     @Operation(summary = "Get the raw XML message data of the last received journey")
-    public String getRawJourney(@RequestParam(required = false) Integer index) {
+    public String getRawJourney(
+            @RequestParam(required = false) Integer index,
+            @RequestParam(required = false, defaultValue = "") String search
+    ) {
         if (index != null) {
-            return dataStore.getRawJourneys().get(index);
+            return dataStore.getRawJourneys().stream()
+                    .filter(i -> i.contains(search))
+                    .toList()
+                    .get(index);
         }
 
         return dataStore.getRawJourneys().getLast();
