@@ -81,6 +81,10 @@ public class DeelStation {
     @JacksonXmlProperty(localName = "TreinRangeerVolledigAf")
     public NSBoolean treinRangeerVolledigAf;
 
+    @JacksonXmlProperty(localName = "MaterieelWijziging")
+    @JacksonXmlElementWrapper(useWrapping = false)
+    public List<MaterieelWijziging> materieelWijziging = List.of();
+
     @JacksonXmlProperty(localName = "Wijziging")
     @JacksonXmlElementWrapper(useWrapping = false)
     public List<Wijziging> wijzigingen;
