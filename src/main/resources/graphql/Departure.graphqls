@@ -20,6 +20,8 @@ type Departure {
     operator: String!
     trainStatus: TrainStatus
     specialFlags: SpecialFlags!
+
+    # TODO: Create `Message` type which contains the type (journey tip or boarding tip) and value
     tips: [String!]!
 
     departureTime: DateTime!
