@@ -19,5 +19,5 @@ public class RitDeel {
 
     @JacksonXmlProperty(localName = "Wijziging")
     @JacksonXmlElementWrapper(useWrapping = false)
-    public List<Wijziging> wijzigingen;
+    public List<Wijziging> wijzigingen = List.of();
 }
