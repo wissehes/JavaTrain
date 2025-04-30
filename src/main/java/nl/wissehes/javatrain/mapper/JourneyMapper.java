@@ -9,9 +9,10 @@ import nl.wissehes.javatrain.model.NDOV.RIT.RitInfo;
 import nl.wissehes.javatrain.model.journey.Journey;
 import nl.wissehes.javatrain.model.journey.JourneyPart;
 import nl.wissehes.javatrain.model.journey.Movement;
-import nl.wissehes.javatrain.model.journey.Stop;
+import nl.wissehes.javatrain.model.journey.stop.SkippingStop;
+import nl.wissehes.javatrain.model.journey.stop.Stop;
+import nl.wissehes.javatrain.model.journey.stop.StoppingStop;
 import nl.wissehes.javatrain.model.shared.JourneyMaterialPart;
-import nl.wissehes.javatrain.model.shared.MaterialPart;
 import nl.wissehes.javatrain.model.shared.ScheduleChange;
 import nl.wissehes.javatrain.model.shared.Station;
 
@@ -64,9 +65,23 @@ public class JourneyMapper {
     }
 
     private Stop mapJourneyPartStop(DeelStation station) {
-        var stop = new Stop();
+        Station mappedStation = new Station(station.station);
+        Boolean stopStatus = station.stopStatus
+                .stream()
+                .filter(i -> i.infoStatus() == InfoStatus.ACTUEEL)
+                .map(i -> i.stopStatus().toBoolean())
+                .findFirst()
+                .orElse(false);
 
-        stop.station = new Station(station.station);
+        if(!stopStatus) {
+            var skippingStop = new SkippingStop();
+            skippingStop.station = mappedStation;
+            return skippingStop;
+        }
+
+        var stop = new StoppingStop();
+
+        stop.station = mappedStation;
         if(station.herkenbareBestemming != null) {
             stop.recognizableDestination = new Station(station.herkenbareBestemming.station());
         }
@@ -77,6 +92,7 @@ public class JourneyMapper {
                 .map(i -> i.stopStatus().toBoolean())
                 .findFirst()
                 .orElse(false);
+
         stop.doNotBoard = station.nietInstappen != null && station.nietInstappen.toBoolean();
 
         if(station.stationToegankelijk != null) {

@@ -1,12 +1,13 @@
-package nl.wissehes.javatrain.model.journey;
+package nl.wissehes.javatrain.model.journey.stop;
 
+import nl.wissehes.javatrain.model.journey.Movement;
 import nl.wissehes.javatrain.model.shared.JourneyMaterialPart;
 import nl.wissehes.javatrain.model.shared.ScheduleChange;
 import nl.wissehes.javatrain.model.shared.Station;
 
 import java.util.List;
 
-public class Stop {
+public class StoppingStop implements Stop {
 
     public Station station;
     public Station recognizableDestination;
@@ -29,5 +30,15 @@ public class Stop {
     public Movement departure;
 
     public List<ScheduleChange> changes;
+
+    @Override
+    public Station getStation() {
+        return station;
+    }
+
+    @Override
+    public Boolean getStopStatus() {
+        return stopStatus;
+    }
 
 }
