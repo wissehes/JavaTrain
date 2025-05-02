@@ -1,5 +1,6 @@
 package nl.wissehes.javatrain.model.journey;
 
+import nl.wissehes.javatrain.model.journey.stop.Stop;
 import nl.wissehes.javatrain.model.shared.ScheduleChange;
 
 import java.util.List;

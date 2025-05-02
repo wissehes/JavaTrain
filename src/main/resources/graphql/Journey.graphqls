@@ -20,7 +20,11 @@ type JourneyPart {
     stops: [Stop!]!
 }
 
-type Stop {
+union Stop =
+    StoppingStop |
+    SkippingStop
+
+type StoppingStop {
     station: Station!
     recognizableDestination: Station
     plannedDestination: Station!
@@ -32,8 +36,15 @@ type Stop {
     isStationAccessible: Boolean!
     isAssistanceAvailable: Boolean!
 
+    materialParts: [JourneyMaterialPart!]!
+
     arrival: StopMovement
     departure: StopMovement
+}
+
+type SkippingStop {
+    station: Station!
+    stopStatus: Boolean!
 }
 
 type StopMovement {

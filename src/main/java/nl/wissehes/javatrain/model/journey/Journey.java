@@ -14,7 +14,6 @@ public class Journey {
     public String lineNumber;
 
     public List<JourneyPart> parts;
-    public List<ScheduleChange> changes;
 
     public boolean reservationRequired;
     public boolean supplementRequired;
