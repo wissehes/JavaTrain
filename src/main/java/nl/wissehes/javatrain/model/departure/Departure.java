@@ -5,9 +5,7 @@ import nl.wissehes.javatrain.model.NDOV.DVS.DepartureDocument;
 import nl.wissehes.javatrain.model.shared.ScheduleChange;
 import nl.wissehes.javatrain.model.shared.Station;
 
-import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
-import java.util.Date;
 import java.util.List;
 
 public class Departure {
@@ -27,7 +25,6 @@ public class Departure {
     public List<Station> plannedViaStations;
     public List<Station> actualViaStations;
 
-    public String serviceNumber;
     public String serviceType;
     public String serviceTypeCode;
 

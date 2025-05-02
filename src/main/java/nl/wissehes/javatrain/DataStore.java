@@ -108,6 +108,13 @@ public final class DataStore {
     }
 
     /**
+     * Get specific departure
+     */
+    public Departure getDeparture(String id) {
+        return departures.get(id);
+    }
+
+    /**
      * Get the journeys
      */
     public List<Journey> getJourneys() {
