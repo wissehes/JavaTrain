@@ -5,6 +5,7 @@ import nl.wissehes.javatrain.mapper.JourneyMapper;
 import nl.wissehes.javatrain.mapper.PositionsMapper;
 import nl.wissehes.javatrain.model.NDOV.DVS.DepartureDocument;
 import nl.wissehes.javatrain.model.NDOV.RIT.JourneyDocument;
+import nl.wissehes.javatrain.model.SiriMessage;
 import nl.wissehes.javatrain.model.departure.Departure;
 import nl.wissehes.javatrain.model.departure.TrainStatus;
 import nl.wissehes.javatrain.model.journey.Journey;
@@ -34,6 +35,8 @@ public final class DataStore {
     private final List<String> rawPositions = new LinkedList<>();
 
     private final Map<String, Station> stations = new HashMap<>();
+
+    private final List<SiriMessage> rawSiriMessages = new LinkedList<>();
 
     private DataStore() {
     }
@@ -85,6 +88,13 @@ public final class DataStore {
         for (TrainPosition position : mappedPositions) {
             positions.put(position.trainNumber, position);
         }
+    }
+
+    /**
+     * Add a raw SIRI message to the data store
+     */
+    public void addRawSiriMessage(SiriMessage message) {
+        rawSiriMessages.add(message);
     }
 
     /**
@@ -143,6 +153,10 @@ public final class DataStore {
      */
     public List<String> getRawPositions() {
         return rawPositions;
+    }
+
+    public List<SiriMessage> getRawSiriMessages() {
+        return rawSiriMessages;
     }
 
     /**
