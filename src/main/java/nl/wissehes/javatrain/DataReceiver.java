@@ -44,7 +44,7 @@ public class DataReceiver {
             while (!Thread.currentThread().isInterrupted()) {
                 String topic = siriSubscriber.recvStr(); // Receive topic
                 byte[] messageBytes = siriSubscriber.recv(); // Receive the compressed message as bytes
-                if(!topic.startsWith("/HTM") && !topic.startsWith("/GVB")) {
+                if(!topic.startsWith("/HTM") && !topic.startsWith("/GVB") && !topic.startsWith("/KEOLIS")) {
                     System.out.println("Topic: " + topic);
                     System.out.println("Message: " + messageBytes.length);
                     this.handleMessage(topic, messageBytes);
