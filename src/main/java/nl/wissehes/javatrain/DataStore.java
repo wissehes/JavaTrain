@@ -1,5 +1,6 @@
 package nl.wissehes.javatrain;
 
+import jakarta.annotation.PreDestroy;
 import nl.wissehes.javatrain.mapper.DepartureMapper;
 import nl.wissehes.javatrain.mapper.JourneyMapper;
 import nl.wissehes.javatrain.mapper.PositionsMapper;
@@ -16,6 +17,10 @@ import nl.wissehes.javatrain.parser.JourneyParser;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -38,7 +43,9 @@ public final class DataStore {
 
     private final List<SiriMessage> rawSiriMessages = new LinkedList<>();
 
-    private DataStore() {
+//    private BufferedWriter writer = new BufferedWriter(new FileWriter("SIRI_messages.txt"));
+
+    private DataStore() throws IOException {
     }
 
     /**
@@ -92,9 +99,27 @@ public final class DataStore {
 
     /**
      * Add a raw SIRI message to the data store
+     *
+     * And store messages in a text file
      */
     public void addRawSiriMessage(SiriMessage message) {
         rawSiriMessages.add(message);
+
+        try {
+
+            File newDirectory = new File("SIRI_messages/" + message.topic());
+
+            if(!newDirectory.exists()) {
+                newDirectory.mkdirs();
+            }
+
+            BufferedWriter writer = new BufferedWriter(new FileWriter("SIRI_messages/" + message.topic() + "/" + System.currentTimeMillis() + ".xml"));
+
+            writer.write(message.message());
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
